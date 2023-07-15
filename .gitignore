@@ -6,3 +6,33 @@ __pycache__/
 *.py[cod]
 node_modules/
 .github/
+
+def load_words():
+    """
+    This function gets words from the library and inserts them in one variable
+    """
+    word_list =  open('words.txt', 'r').readline().split
+    return word_list
+
+
+def random_word():
+    """
+    Function to get random word from the word_list
+    Return random word and test it 
+    """
+    word = random.choice(word_list)
+    return word.upper()
+
+def is_word_guessed(gameword, letters_already_guessed):
+    """
+    Function to let computer know when to stop asking user for letters if the word is guesses
+    If user guess the wprd program stops and congartulate the user
+    """
+    if set(gameword) & set(letters_already_guessed) == set(gameword):
+        return True
+    else:
+        return False
+
+gameword = 'wind'
+letters_already_guessed = ['w', 'i', 'n']
+print(is_word_guessed(test_gameword, test_letters_already_guessed))
