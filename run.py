@@ -1,6 +1,4 @@
 import random
-import string 
-
 
 
 print("Welcome to the Hangman Game!")
@@ -17,7 +15,8 @@ def intro():
     for num in user_choice1:    
         if (user_choice1 == '1'):
             print("This is where the fun begins!")
-            load_words()
+            print("\n")
+            choose_word_random('word_list')
         elif (user_choice1 == '2'):
             print("\n")
             print("RULES")
@@ -41,7 +40,7 @@ def wrong_choice():
     user_choice2 = input("-> ")
     for num in user_choice2:
         if (user_choice2 == '1'):
-            load_words()
+            choose_word_random('word_list')
         elif (user_choice2 == '2'):
             print('THE END')
             exit()
@@ -49,15 +48,40 @@ def wrong_choice():
             print("Wrong choice, please enter your number again.")
         wrong_choice()
             
-#def load_words():
 
-    
+def load_words():
+    """
+    Generates the lsit of random words from words.txt files
+    """
+    word_list = open("words.txt", 'r').readline().split()
+    return word_list 
 
-              
+def choose_word_random(word_list):
+    """
+    Pulls out one word from the word_list
+    """
+    x = random.choice(word_list)
+    return x
+
+def hangman():
+    """
+    Function to generate and update user score
+    """
+    letters_guessed = []
+    guesses_remaining = 6
+    warnings_remaining = 3
+
+    print("A gameword is", len(x), "letters long", "\n")
+    while True:
+
+
+
+
 
 
 
 start = intro()
 print(start)
+
    
 
