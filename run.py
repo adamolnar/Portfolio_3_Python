@@ -21,9 +21,11 @@ def intro():
         elif (user_choice1 == '2'):
             print("\n")
             print("RULES")
+            print("-> You have to guess the secret word before the stick figure is hung.")
+            print("-> The computer will indicate how many letters is in the word. One letter ='_'.")
             print("-> You have six chances to guess the word.")
-            print("-> If You chose the letter, it will be delited from the list.")
-            print("-> You have 3 warnings: you lose one warning if you chose a letter which has been already used or symbols which are not letters  ")
+            print("-> If you choose the letter, that letter will be delited from the list. ")
+            print("-> You have 3 warnings: you lose one warning each time 1if you chose a letter which has been already used or symbols which are not letters  ")
             print("\n")
             print("Are you ready now to begin the game?")
             print("(1)Yes, take me to the game.\n(2)No, exit the game.")
@@ -47,7 +49,9 @@ def wrong_choice():
             print("Wrong choice, please enter your number again.")
         wrong_choice()
             
+#def load_words():
 
+    
 
               
 
