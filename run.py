@@ -58,8 +58,30 @@ def get_word(word_list):
     return word.upper()
 
 
-test_word_list = ['bad', 'sky', 'capitol', 'fire', 'rain'] 
-print(get_word(test_word_list))
+def is_word_guessed(gameword, letters_already_guessed):
+    """
+    Function to compare letters pickes by a user to letters contained in guess word
+    If letters in word are equal to letters picked by a user return True and 'do stomething' otherwise return False
+    and 'do something'
+    """
+    if set(gameword) & set(letters_already_guessed) == set(gameword):
+        return True
+    else:
+        return False
+
+def show_guessed_word():
+    """
+    Show to user the gameword by displaying number of '_' equivalent to length of the word
+    Allow to see the number of guessed letters and letters remaining 
+    """
+
+
+
+
+
+
+
+
 
 
 
