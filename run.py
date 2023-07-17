@@ -1,4 +1,5 @@
 import random
+from words import word_list
 
 
 print("Welcome to the Hangman Game!")
@@ -24,7 +25,7 @@ def intro():
             print("-> The computer will indicate how many letters is in the word. One letter ='_'.")
             print("-> You have six chances to guess the word.")
             print("-> If you choose the letter, that letter will be delited from the list. ")
-            print("-> You have 3 warnings: you lose one warning each time 1if you chose a letter which has been already used or symbols which are not letters  ")
+            print("-> You have 3 warnings: you lose one warning each time if you chose a letter which has been already used or symbols which are not letters  ")
             print("\n")
             print("Are you ready now to begin the game?")
             print("(1)Yes, take me to the game.\n(2)No, exit the game.")
@@ -49,31 +50,16 @@ def wrong_choice():
         wrong_choice()
             
 
-def load_words():
+def get_word(word_list):
     """
-    Generates the lsit of random words from words.txt files
+    Function to pull out guess word for the user from the word_list
     """
-    word_list = open("words.txt", 'r').readline().split()
-    return word_list 
+    word = random.choice(word_list)
+    return word.upper()
 
-def choose_word_random(word_list):
-    """
-    Pulls out one word from the word_list
-    """
-    x = random.choice(word_list)
-    return x
 
-def hangman():
-    """
-    Function to generate and update user score
-    """
-    letters_guessed = []
-    guesses_remaining = 6
-    warnings_remaining = 3
-
-    print("A gameword is", len(x), "letters long", "\n")
-    while True:
-
+test_word_list = ['bad', 'sky', 'capitol', 'fire', 'rain'] 
+print(get_word(test_word_list))
 
 
 
