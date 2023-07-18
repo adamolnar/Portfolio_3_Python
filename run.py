@@ -1,5 +1,6 @@
 import random
 from words import word_list
+import string
 
 
 print("Welcome to the Hangman Game!")
@@ -17,12 +18,12 @@ def intro():
         if (user_choice1 == '1'):
             print("This is where the fun begins!")
             print("\n")
-            choose_word_random('word_list')
+            get_word('word_list')
         elif (user_choice1 == '2'):
             print("\n")
-            print("RULES")
+            print("GAME RULES:")
             print("-> You have to guess the secret word before the stick figure is hung.")
-            print("-> The computer will indicate how many letters is in the word. One letter ='_'.")
+            print("-> The computer will indicate how many letters is in the word. One letter = '_'.")
             print("-> You have six chances to guess the word.")
             print("-> If you choose the letter, that letter will be delited from the list. ")
             print("-> You have 3 warnings: you lose one warning each time if you chose a letter which has been already used or symbols which are not letters  ")
@@ -31,7 +32,7 @@ def intro():
             print("(1)Yes, take me to the game.\n(2)No, exit the game.")
             wrong_choice()  
         else:
-            print("Wrong choice, please enter your number again.")
+            print("Incorrect number, please enter your choice again.")
         intro()
 
 def wrong_choice(): 
@@ -41,16 +42,16 @@ def wrong_choice():
     user_choice2 = input("-> ")
     for num in user_choice2:
         if (user_choice2 == '1'):
-            choose_word_random('word_list')
+            get_word('word_list')
         elif (user_choice2 == '2'):
             print('THE END')
             exit()
         else:
-            print("Wrong choice, please enter your number again.")
+            print("Incorrect number, please enter your choice again.")
         wrong_choice()
-            
 
-def get_word(word_list):
+
+def get_word():
     """
     Function to pull out guess word for the user from the word_list
     """
@@ -69,11 +70,22 @@ def is_word_guessed(gameword, letters_already_guessed):
     else:
         return False
 
-def show_guessed_word():
+def show_guessed_word(gameword, letters_already_guessed):
     """
     Show to user the gameword by displaying number of '_' equivalent to length of the word
-    Allow to see the number of guessed letters and letters remaining 
+    Allow user to see the number of guessed letters and remaining letters that are needed to be guessed.
     """
+    result_list = []
+    for i in range(len(gameword)):
+        if list(gameword)[i] in set(letters_already_guessed):
+            result_list.append(list(gameword)[i])
+        else:
+            result_list.append("_ " * len(gameword))
+        return ''.join(map(str, result_list))
+
+test_gameword = 'sad'
+test_letters_already_guessed = ['d']
+print(show_guessed_word(test_gameword, test_letters_already_guessed))
 
 
 
@@ -87,9 +99,8 @@ def show_guessed_word():
 
 
 
-
+gameword = get_word()
 start = intro()
-print(start)
 
    
 
