@@ -1,3 +1,4 @@
+# TEST 1
 def get_word(word_list):
     """
     Function to pull out guess word for the user from the word_list
@@ -10,7 +11,7 @@ test_word_list = ['bad', 'sky', 'capitol', 'fire', 'rain']
 print(get_word(test_word_list))
 
 
-
+# TEST 2
 def is_word_guessed(gameword, letters_already_guessed):
     """
     Function to compare letters pickes by a user to letters contained in guess word
@@ -25,3 +26,24 @@ def is_word_guessed(gameword, letters_already_guessed):
 test_gameword = 'anna'
 test_letters_already_guesses = ["a", 'n']
 print(is_word_guessed(test_gameword, test_letters_already_guesses))
+
+
+# TEST 3
+def show_guessed_word(gameword, letters_already_guessed):
+    """
+    Show to user the gameword by displaying number of '_' equivalent to length of the word
+    Allow user to see the number of guessed letters and remaining letters that are needed to be guessed.
+    """
+    result_list = []
+    for i in range(len(gameword)):
+        if list(gameword)[i] in set(letters_already_guessed):
+            result_list.append(list(gameword)[i])
+        else:
+            result_list.append("_ ")
+    return ''.join(map(str, result_list))
+
+test_gameword = 'apple'
+test_letters_already_guessed = ['p']
+print(show_guessed_word(test_gameword, test_letters_already_guessed))
+
+#TEST4 

@@ -80,11 +80,11 @@ def show_guessed_word(gameword, letters_already_guessed):
         if list(gameword)[i] in set(letters_already_guessed):
             result_list.append(list(gameword)[i])
         else:
-            result_list.append("_ " * len(gameword))
-        return ''.join(map(str, result_list))
+            result_list.append("_ ")
+    return ''.join(map(str, result_list))
 
-test_gameword = 'sad'
-test_letters_already_guessed = ['d']
+test_gameword = 'lollipop'
+test_letters_already_guessed = ['l','p']
 print(show_guessed_word(test_gameword, test_letters_already_guessed))
 
 
