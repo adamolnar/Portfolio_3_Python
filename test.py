@@ -47,3 +47,18 @@ test_letters_already_guessed = ['p']
 print(show_guessed_word(test_gameword, test_letters_already_guessed))
 
 #TEST4 
+def available_letters(letters_already_guessed):
+    """
+    Function to return alphabet letter without letters which has been picked by the user
+    User can see what letters are still available to pick 
+    To avoid choosing the same letters
+    """
+    still_available = list(string.ascii_uppercase)
+
+    for i in range(-len(still_available), 0):
+        if still_available[i] in letters_already_guessed:
+            still_available.remove(still_available[i])
+    return  ' '.join(still_available)
+            
+test_letters_already_guessed = ['B', 'M', 'R', 'T']
+print(available_letters(test_letters_already_guessed))

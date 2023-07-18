@@ -92,14 +92,13 @@ def available_letters(letters_already_guessed):
     """
     still_available = list(string.ascii_uppercase)
 
-    for i in range(len(still_available)):
+    for i in range(-len(still_available), 0):
         if still_available[i] in letters_already_guessed:
-            del still_available[i]
-    return ' '.join(still_available)
-
-
-test_letters_already_guessed = ['s', 'm', 'a', 'r', 't']
-color = fg('red')
+            still_available.remove(still_available[i])
+    return  ' '.join(still_available)
+            
+test_letters_already_guessed = ['B', 'M', 'R', 'T']
+color = fg('green')
 print(color + available_letters(test_letters_already_guessed))
 
 
