@@ -4,13 +4,6 @@ import string
 from colored import fg
 import pygame
 
-pygame.init()
-surface = pygame.display.set_mode((400, 300))
-color = (0, 0, 255)
-surface.fill(color)
-pygame.display.flip()
-
-
 
 print("Welcome to the Hangman Game!")
 print("Do you know the rules?")
@@ -22,11 +15,10 @@ def intro():
     Either user beginnes the game without further informations, or he gets to know the rules.
     If inncorect number is chosen it asks user to repet the action.
     """
-    user_choice1 = input("-> ")
+    user_choice1 = input("-> \n")
     for num in user_choice1:    
         if (user_choice1 == '1'):
-            print("This is where the fun begins!")
-            print("\n")
+            print("This is where the fun begins!\n")
             game(gameword)
         elif (user_choice1 == '2'):
             print("\n")
@@ -112,9 +104,10 @@ def game(gameword):
     Determine user choices scenario
     """
     used_letters = []
-    guesses_remaining =6
+    guesses_remaining = 6
     warnings_remaining = 3
-    print('A gameword is', len(gameword), 'letters long.')
+    print('The game is loading...\n')
+    print('A gameword is', len(gameword), 'letters long.\n')
 
 
 
