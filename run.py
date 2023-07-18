@@ -19,7 +19,7 @@ def intro():
         if (user_choice1 == '1'):
             print("This is where the fun begins!")
             print("\n")
-            get_word('word_list')
+            game(gameword)
         elif (user_choice1 == '2'):
             print("\n")
             print("GAME RULES:")
@@ -43,7 +43,7 @@ def wrong_choice():
     user_choice2 = input("-> ")
     for num in user_choice2:
         if (user_choice2 == '1'):
-            get_word('word_list')
+            game(gameword)
         elif (user_choice2 == '2'):
             print('THE END')
             exit()
@@ -97,17 +97,16 @@ def available_letters(letters_already_guessed):
             still_available.remove(still_available[i])
     return  ' '.join(still_available)
             
-test_letters_already_guessed = ['B', 'M', 'R', 'T']
-color = fg('green')
-print(color + available_letters(test_letters_already_guessed))
-
-
-
-
-
-
-
-
+def game(gameword):
+    """
+    Function to implement the body of the program 
+    Use previouse functions whitin this body
+    Determine user choices scenario
+    """
+    used_letters = []
+    guesses_remaining =6
+    warnings_remaining = 3
+    print('A gameword is', len(gameword), 'letters long.')
 
 
 
