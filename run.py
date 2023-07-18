@@ -1,6 +1,7 @@
 import random
 from words import word_list
 import string
+from colored import fg
 
 
 print("Welcome to the Hangman Game!")
@@ -83,10 +84,23 @@ def show_guessed_word(gameword, letters_already_guessed):
             result_list.append("_ ")
     return ''.join(map(str, result_list))
 
-test_gameword = 'lollipop'
-test_letters_already_guessed = ['l','p']
-print(show_guessed_word(test_gameword, test_letters_already_guessed))
+def available_letters(letters_already_guessed):
+    """
+    Function to return alphabet letter without letters which has been picked by the user
+    User can see what letters are still available to pick 
+    To avoid choosing the same letters
+    """
+    still_available = list(string.ascii_uppercase)
 
+    for i in range(len(still_available)):
+        if still_available[i] in letters_already_guessed:
+            del still_available[i]
+    return ' '.join(still_available)
+
+
+test_letters_already_guessed = ['s', 'm', 'a', 'r', 't']
+color = fg('red')
+print(color + available_letters(test_letters_already_guessed))
 
 
 
