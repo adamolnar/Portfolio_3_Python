@@ -28,7 +28,7 @@ def intro():
     user_choice1 = input("-> \n")
     for num in user_choice1:    
         if (user_choice1 == '1'):
-            print("This is where the fun begins!\n")
+            print(YELLOW + "This is where the fun begins!\n" + WHITE)
             game(gameword)
         elif (user_choice1 == '2'):
             print("\n")
@@ -126,17 +126,19 @@ def game(gameword):
         If incorrect sign or repeating previusly picked letter is entered user looses 1 warning
         """
         if not is_word_guessed(gameword, used_letters):
-           
             print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
-            print("Available letters: ", available_letters(used_letters),'\n')
-            
-            guess = input('Please enter letter of your choice:  \n').upper()
-
+            print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + WHITE)   
+            print('Please enter letter of your choice: ')
+            guess = input("-> \n")
             if guessed == False:
                 guesses_remaining -= 1
                 if not guess.isalpha(): 
                     warnings_remaining -= 1
                     print(RED + 'Inncorect entry, you loose 1 warning!\n' + WHITE)
+                if guesses_remaining <= 0:
+                    print('Sorry, you have no more guesses available. the word was: ',gameword )
+                    break
+
 
 
 
