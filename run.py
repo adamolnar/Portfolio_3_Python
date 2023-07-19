@@ -4,6 +4,16 @@ import string
 from colored import fg
 import pygame
 
+BLACK = '\033[30m'
+RED = '\033[31m'
+GREEN = '\033[32m'
+YELLOW = '\033[33m'
+BLUE = '\033[34m'
+MAGENTA = '\033[35m'
+CYAN = '\033[36m'
+WHITE = '\033[37m'
+UNDERLINE = '\033[4m'
+RESET = '\033[0m'
 
 print("Welcome to the Hangman Game!")
 print("Do you know the rules?")
@@ -33,7 +43,7 @@ def intro():
             print("(1)Yes, take me to the game.\n(2)No, exit the game.")
             wrong_choice()  
         else:
-            print("Incorrect number, please enter your choice again.")
+            print(RED + "Incorrect number, please enter your choice again." + WHITE)
         intro()
 
 def wrong_choice(): 
@@ -48,7 +58,7 @@ def wrong_choice():
             print('THE END')
             exit()
         else:
-            print("Incorrect number, please enter your choice again.")
+            print(RED + "Incorrect number, please enter your choice again." + WHITE)
         wrong_choice()
 
 
@@ -99,15 +109,38 @@ def available_letters(letters_already_guessed):
             
 def game(gameword):
     """
-    Function to implement the body of the program 
+    Function to implement the body of the program and
     Use previouse functions whitin this body
     Determine user choices scenario
     """
     used_letters = []
+    guessed = False
     guesses_remaining = 6
     warnings_remaining = 3
     print('The game is loading...\n')
     print('A gameword is', len(gameword), 'letters long.\n')
+
+    while not guessed and guesses_remaining > 0:
+        """
+        Decrease user remaining guesses and warning each time letter is entered by user 
+        If incorrect sign or repeating previusly picked letter is entered user looses 1 warning
+        """
+        if not is_word_guessed(gameword, used_letters):
+           
+            print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
+            print("Available letters: ", available_letters(used_letters),'\n')
+            
+            guess = input('Please enter letter of your choice:  \n').upper()
+
+            if guessed == False:
+                guesses_remaining -= 1
+                if not guess.isalpha(): 
+                    warnings_remaining -= 1
+                    print(RED + 'Inncorect entry, you loose 1 warning!\n' + WHITE)
+
+
+
+
 
 
 

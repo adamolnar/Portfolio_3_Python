@@ -46,7 +46,7 @@ test_gameword = 'apple'
 test_letters_already_guessed = ['p']
 print(show_guessed_word(test_gameword, test_letters_already_guessed))
 
-#TEST4 
+# TEST 4 
 def available_letters(letters_already_guessed):
     """
     Function to return alphabet letter without letters which has been picked by the user
@@ -62,3 +62,22 @@ def available_letters(letters_already_guessed):
             
 test_letters_already_guessed = ['B', 'M', 'R', 'T']
 print(available_letters(test_letters_already_guessed))
+
+#TEST 5
+while not guessed and guesses_remaining > 0:
+        """
+        Decrease user remaining guesses and warning each time letter is entered by user 
+        If incorrect sign or repeating previusly picked letter is entered user looses 1 warning
+        """
+        if not is_word_guessed(gameword, used_letters):
+           
+            print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
+            print("Available letters: ", available_letters(used_letters),'\n')
+            
+            guess = input('Please enter letter of your choice:  \n').upper()
+
+            if guessed == False:
+                guesses_remaining -= 1
+                if not guess.isalpha(): 
+                    warnings_remaining -= 1
+                    print(RED + 'Inncorect entry, you loose 1 warning!\n' + WHITE)
