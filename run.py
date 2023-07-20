@@ -120,6 +120,7 @@ def game(gameword):
     guesses_remaining = 6
     warnings_remaining = 3
     print('The game is loading...\n')
+    print(display_hangman(guesses_remaining))
     print('A gameword is', len(gameword), 'letters long.\n')
 
     while not guessed and guesses_remaining > 0:
@@ -133,30 +134,110 @@ def game(gameword):
             print('Please enter letter of your choice: ')
             guess = input("-> \n").upper()
             if guessed == False:
-                guesses_remaining -= 1
+                
             
 
                 if not guess.isalpha(): 
                     warnings_remaining -= 1
                     print(RED + 'Inncorect entry, you loose 1 warning!\n' + WHITE)
                 elif guess in set(used_letters):
-                    print('You got it right!')
-                    used_letters.append(guess)
+                    print('You got it right!' + show_guessed_word(used_letters))
+                    used_letters.append(guess) 
                     press = input('Press any key to continue.')
                 else:
                     used_letters.append(guess)
                     print('Sorry! That letters in not in the word.')
                     print('You loose 1 guess.')
+                    guesses_remaining -= 1
+                    print(display_hangman(guesses_remaining))
 
                     
                 if guesses_remaining <= 0:
                     print('Sorry, you have no more guesses available. the word was: ',gameword )
-                    break
+                    print('THE END')
+                    exit()
+                    
 
             else: 
                 print('Congratulations, you won!\n' + 'The gameword is: ', gameword)
                 break
 
+def display_hangman(guesses_remaining):
+    """
+    Visual aid to help user follow stages of his progress by displaying animated character 
+    """
+    stages = [  # final state: head, torso, both arms, and both legs
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / \\
+                   -
+                """,
+                # head, torso, both arms, and one leg
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / 
+                   -
+                """,
+                # head, torso, and both arms
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |      
+                   -
+                """,
+                # head, torso, and one arm
+                """
+                   --------
+                   |      |
+                   |      O
+                   |     \\|
+                   |      |
+                   |     
+                   -
+                """,
+                # head and torso
+                """
+                   --------
+                   |      |
+                   |      O
+                   |      |
+                   |      |
+                   |     
+                   -
+                """,
+                # head
+                """
+                   --------
+                   |      |
+                   |      O
+                   |    
+                   |      
+                   |     
+                   -
+                """,
+                # initial empty state
+                """
+                   --------
+                   |      |
+                   |      
+                   |    
+                   |      
+                   |     
+                   -
+                """
+    ]
+    return stages[guesses_remaining]
 
    
 
