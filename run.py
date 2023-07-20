@@ -131,17 +131,34 @@ def game(gameword):
             print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
             print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + WHITE)   
             print('Please enter letter of your choice: ')
-            guess = input("-> \n")
+            guess = input("-> \n").upper()
             if guessed == False:
                 guesses_remaining -= 1
+            
+
                 if not guess.isalpha(): 
                     warnings_remaining -= 1
                     print(RED + 'Inncorect entry, you loose 1 warning!\n' + WHITE)
+                elif guess in set(used_letters):
+                    print('You got it right!')
+                    used_letters.append(guess)
+                    press = input('Press any key to continue.')
+                else:
+                    used_letters.append(guess)
+                    print('Sorry! That letters in not in the word.')
+                    print('You loose 1 guess.')
+
+                    
                 if guesses_remaining <= 0:
                     print('Sorry, you have no more guesses available. the word was: ',gameword )
                     break
 
+            else: 
+                print('Congratulations, you won!\n' + 'The gameword is: ', gameword)
+                break
 
+
+   
 
 
 
@@ -151,6 +168,7 @@ def game(gameword):
 
 gameword = get_word()
 start = intro()
+game(gameword)
 
    
 
