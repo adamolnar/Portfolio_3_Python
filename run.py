@@ -140,6 +140,7 @@ def game(gameword):
                 if not guess.isalpha(): 
                     warnings_remaining -= 1
                     print(RED + 'Inncorect entry, you loose 1 warning!\n' + WHITE)
+                    print(display_hangman(guesses_remaining))
                 elif guess in set(used_letters):
                     print('You got it right!' + show_guessed_word(used_letters))
                     used_letters.append(guess) 
@@ -167,6 +168,7 @@ def display_hangman(guesses_remaining):
     Visual aid to help user follow stages of his progress by displaying animated character 
     """
     stages = [  # final state: head, torso, both arms, and both legs
+                MAGENTA +
                 """
                    --------
                    |      |
@@ -175,8 +177,9 @@ def display_hangman(guesses_remaining):
                    |      |
                    |     / \\
                    -
-                """,
+                """ ,
                 # head, torso, both arms, and one leg
+                MAGENTA + 
                 """
                    --------
                    |      |
@@ -185,8 +188,10 @@ def display_hangman(guesses_remaining):
                    |      |
                    |     / 
                    -
-                """,
+                """
+                + WHITE,
                 # head, torso, and both arms
+                MAGENTA +
                 """
                    --------
                    |      |
@@ -195,8 +200,9 @@ def display_hangman(guesses_remaining):
                    |      |
                    |      
                    -
-                """,
+                """ + WHITE ,
                 # head, torso, and one arm
+                MAGENTA +
                 """
                    --------
                    |      |
@@ -205,8 +211,10 @@ def display_hangman(guesses_remaining):
                    |      |
                    |     
                    -
-                """,
+                """
+                + WHITE,
                 # head and torso
+                MAGENTA + 
                 """
                    --------
                    |      |
@@ -215,8 +223,10 @@ def display_hangman(guesses_remaining):
                    |      |
                    |     
                    -
-                """,
+                """
+                + WHITE ,
                 # head
+                MAGENTA +
                 """
                    --------
                    |      |
@@ -225,8 +235,10 @@ def display_hangman(guesses_remaining):
                    |      
                    |     
                    -
-                """,
+                """
+                + WHITE,
                 # initial empty state
+                MAGENTA +
                 """
                    --------
                    |      |
@@ -236,6 +248,7 @@ def display_hangman(guesses_remaining):
                    |     
                    -
                 """
+                + WHITE
     ]
     return stages[guesses_remaining]
 
