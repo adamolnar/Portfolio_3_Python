@@ -142,7 +142,7 @@ def game(gameword):
                     print(RED + 'Inncorect entry, you loose 1 warning!\n' + WHITE)
                     print(display_hangman(guesses_remaining))
                 elif guess in set(used_letters):
-                    print('You got it right!' + show_guessed_word(used_letters))
+                    print('You got it right!')
                     used_letters.append(guess) 
                     press = input('Press any key to continue.')
                 else:
