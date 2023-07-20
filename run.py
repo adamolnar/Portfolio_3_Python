@@ -2,8 +2,10 @@ import random
 from words import word_list
 import string
 from colored import fg
-import pygame
 
+"""
+Color variables to create user experience friendly colored text
+"""
 BLACK = '\033[30m'
 RED = '\033[31m'
 GREEN = '\033[32m'
