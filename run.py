@@ -14,18 +14,19 @@ YELLOW = '\033[33m'
 BLUE = '\033[34m'
 MAGENTA = '\033[35m'
 CYAN = '\033[36m'
-WHITE = '\033[37m'
+RESET = '\033[37m'
 UNDERLINE = '\033[4m'
 RESET = '\033[0m'
 
 """
 Game logo with use of pyfiglet library
 """
-result = pyfiglet.figlet_format("Hangman Game", font = "digital" )
+result = pyfiglet.figlet_format("Hangman Game", font = "digital")
 print(CYAN + result + RESET)
 
-print("Welcome to the Hangman Game!")
-print("Do you know the rules?")
+print(YELLOW + UNDERLINE  + "Welcome to the Hangman Game!" + RESET)
+print("\n")
+print(GREEN + "Do you know the rules?"+ RESET)
 print("(1)Yes, take me to the game.\n(2)No, show me the rules.")
 
 def intro():
@@ -34,25 +35,27 @@ def intro():
     Either user beginnes the game without further informations, or he gets to know the rules.
     If inncorect number is chosen it asks user to repet the action.
     """
-    user_choice1 = input("-> \n")
+    user_choice1 = input("-> ")
     for num in user_choice1:    
         if (user_choice1 == '1'):
-            print(YELLOW + "This is where the fun begins!\n" + WHITE)
+            print(YELLOW + "This is where the fun begins!\n" + RESET)
             game(gameword)
         elif (user_choice1 == '2'):
             print("\n")
-            print("GAME RULES:")
+            print(YELLOW + UNDERLINE + "GAME RULES:" + RESET)
             print("-> You have to guess the secret word before the stick figure is hung.")
-            print("-> The computer will indicate how many letters is in the word. One letter = '_'.")
+            print("-> The computer will indicate how many letters is in the word.")
+            print("-> One letter = '_'.")
             print("-> You have six chances to guess the word.")
-            print("-> If you choose the letter, that letter will be delited from the list. ")
-            print("-> You have 3 warnings: you lose one warning each time if you chose a letter which has been already used or symbols which are not letters  ")
+            print("-> If you choose the letter, that letter will be delited from the list.")
+            print("-> You have 3 warnings: you lose one warning each time if you chose a letter")
+            print("   which has been already used or symbols which are not letters.")
             print("\n")
-            print("Are you ready now to begin the game?")
+            print(YELLOW + UNDERLINE + "Are you ready now to begin the game?" + RESET)
             print("(1)Yes, take me to the game.\n(2)No, exit the game.")
             wrong_choice()  
         else:
-            print(RED + "Incorrect number, please enter your choice again." + WHITE)
+            print(RED + "Incorrect number, please enter your choice again." + RESET)
         intro()
 
 def wrong_choice(): 
@@ -64,10 +67,11 @@ def wrong_choice():
         if (user_choice2 == '1'):
             game(gameword)
         elif (user_choice2 == '2'):
-            print('THE END')
+            print("\n")
+            print(RED + 'THE END'+ RESET)
             exit()
         else:
-            print(RED + "Incorrect number, please enter your choice again." + WHITE)
+            print(RED + "Incorrect number, please enter your choice again." + RESET)
         wrong_choice()
 
 
@@ -137,18 +141,19 @@ def game(gameword):
         """
         if not is_word_guessed(gameword, used_letters):
             print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
-            print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + WHITE)   
+            print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + RESET)   
             print('Please enter letter of your choice: ')
-            guess = input("-> \n").upper()
+            guess = input("-> ")
+            print(guess.upper())
             if guessed == False:
                 
             
 
                 if not guess.isalpha(): 
                     warnings_remaining -= 1
-                    print(RED + 'Inncorect entry, you loose 1 warning!\n' + WHITE)
+                    print(RED + 'Inncorect entry, you loose 1 warning!\n' + RESET)
                     print(display_hangman(guesses_remaining))
-                elif guess in set(used_letters):
+                elif guess in set(gameword):
                     print('You got it right!')
                     used_letters.append(guess) 
                     press = input('Press any key to continue.')
@@ -196,7 +201,7 @@ def display_hangman(guesses_remaining):
                    |     / 
                    -
                 """
-                + WHITE,
+                + RESET,
                 # head, torso, and both arms
                 MAGENTA +
                 """
@@ -207,7 +212,7 @@ def display_hangman(guesses_remaining):
                    |      |
                    |      
                    -
-                """ + WHITE ,
+                """ + RESET ,
                 # head, torso, and one arm
                 MAGENTA +
                 """
@@ -219,7 +224,7 @@ def display_hangman(guesses_remaining):
                    |     
                    -
                 """
-                + WHITE,
+                + RESET,
                 # head and torso
                 MAGENTA + 
                 """
@@ -231,7 +236,7 @@ def display_hangman(guesses_remaining):
                    |     
                    -
                 """
-                + WHITE ,
+                + RESET ,
                 # head
                 MAGENTA +
                 """
@@ -243,7 +248,7 @@ def display_hangman(guesses_remaining):
                    |     
                    -
                 """
-                + WHITE,
+                + RESET,
                 # initial empty state
                 MAGENTA +
                 """
@@ -255,7 +260,7 @@ def display_hangman(guesses_remaining):
                    |     
                    -
                 """
-                + WHITE
+                + RESET
     ]
     return stages[guesses_remaining]
 
@@ -267,7 +272,7 @@ def display_hangman(guesses_remaining):
 
 
 
-gameword = get_word()
+gameword = 'LOVE'
 start = intro()
 game(gameword)
 
