@@ -1,4 +1,5 @@
 import random
+import pyfiglet
 from words import word_list
 import string
 from colored import fg
@@ -16,6 +17,12 @@ CYAN = '\033[36m'
 WHITE = '\033[37m'
 UNDERLINE = '\033[4m'
 RESET = '\033[0m'
+
+"""
+Game logo with use of pyfiglet library
+"""
+result = pyfiglet.figlet_format("Hangman Game", font = "digital" )
+print(CYAN + result + RESET)
 
 print("Welcome to the Hangman Game!")
 print("Do you know the rules?")
