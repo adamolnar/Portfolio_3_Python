@@ -117,8 +117,8 @@ def available_letters(letters_already_guessed):
 
     for i in range(-len(still_available), 0):
         if still_available[i] in letters_already_guessed:
-            still_available.remove(still_available[i])
-    return  ' '.join(still_available)
+            still_available[i] = (RED + "x" + GREEN )
+    return ' ' .join(still_available) 
             
 def game(gameword):
     """
@@ -134,7 +134,7 @@ def game(gameword):
     print(display_hangman(guesses_remaining))
     print('A gameword is', len(gameword), 'letters long.\n')
 
-    while not guessed and guesses_remaining > 0:
+    while True:
         """
         Decrease user remaining guesses and warning each time letter is entered by user 
         If incorrect sign or repeating previusly picked letter is entered user looses 1 warning
@@ -142,9 +142,8 @@ def game(gameword):
         if not is_word_guessed(gameword, used_letters):
             print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
             print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + RESET)   
-            print('Please enter letter of your choice: ')
-            guess = input("-> ")
-            print(guess.upper())
+            guess = str.upper(input('Please enter letter of your choice: '))
+
             if guessed == False:
                 
             
