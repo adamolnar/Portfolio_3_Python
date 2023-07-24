@@ -14,7 +14,6 @@ YELLOW = '\033[33m'
 BLUE = '\033[34m'
 MAGENTA = '\033[35m'
 CYAN = '\033[36m'
-RESET = '\033[37m'
 UNDERLINE = '\033[4m'
 RESET = '\033[0m'
 
@@ -143,19 +142,29 @@ def game(gameword):
             print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
             print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + RESET)   
             guess = str.upper(input('Please enter letter of your choice: '))
+            print("\n")
 
             if guessed == False:
                 
-            
-
-                if not guess.isalpha(): 
+                if not guess.isalpha():
+                    print(RED + 'Oops! You pressed wrong key. Try again!' + RESET)
+                    pass
+                elif len(str(guess)) != 1 :
+                    print(RED + 'Oops! You pressed the same letter multiple times. Try again!' + RESET)
+                    pass
+                elif guess in used_letters:
                     warnings_remaining -= 1
-                    print(RED + 'Inncorect entry, you loose 1 warning!\n' + RESET)
+                    print(RED + 'This letter has already been used, you lose 1 warning!\n' + RESET)
                     print(display_hangman(guesses_remaining))
+                    if warnings_remaining == 0:
+                        print(RED + 'You run out of warning! This is the end of the game! Good luck next time!'+ RESET)
+                        exit()
                 elif guess in set(gameword):
-                    print('You got it right!')
+                    print(YELLOW + 'You got it right!' + RESET)
                     used_letters.append(guess) 
+                    guesses_remaining -= 1
                     press = input('Press any key to continue.')
+                    print('\n')
                 else:
                     used_letters.append(guess)
                     print('Sorry! That letters in not in the word.')
@@ -165,8 +174,8 @@ def game(gameword):
 
                     
                 if guesses_remaining <= 0:
-                    print('Sorry, you have no more guesses available. the word was: ',gameword )
-                    print('THE END')
+                    print(RED + 'Sorry, you have no more guesses available. The word was: '+ RESET, gameword)
+                    print(RED+ 'THE END' + RESET)
                     exit()
                     
 
