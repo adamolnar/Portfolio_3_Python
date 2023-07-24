@@ -3,6 +3,8 @@ import pyfiglet
 from words import word_list
 import string
 from colored import fg
+import os
+
 
 """
 Color variables to create user experience friendly colored text
@@ -38,6 +40,7 @@ def intro():
     for num in user_choice1:    
         if (user_choice1 == '1'):
             print(YELLOW + "This is where the fun begins!\n" + RESET)
+            os.system('cls||clear')
             game(gameword)
         elif (user_choice1 == '2'):
             print("\n")
@@ -118,6 +121,8 @@ def available_letters(letters_already_guessed):
         if still_available[i] in letters_already_guessed:
             still_available[i] = (RED + "x" + GREEN )
     return ' ' .join(still_available) 
+
+       
             
 def game(gameword):
     """
@@ -130,58 +135,67 @@ def game(gameword):
     guesses_remaining = 6
     warnings_remaining = 3
     print('The game is loading...\n')
-    print(display_hangman(guesses_remaining))
     print('A gameword is', len(gameword), 'letters long.\n')
+    print('\n')
 
     while True:
         """
         Decrease user remaining guesses and warning each time letter is entered by user 
-        If incorrect sign or repeating previusly picked letter is entered user looses 1 warning
+        If incorrect sign or repeating previusly picked letter is entered user is not losing guesses or wanrings
+        If previously chosen letter is picked again, user looses 1 warning 
         """
         if not is_word_guessed(gameword, used_letters):
             print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
-            print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + RESET)   
-            guess = str.upper(input('Please enter letter of your choice: '))
-            print("\n")
+            print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + RESET)  
+            print(display_hangman(guesses_remaining)) 
+            guess = str.upper(input('Please enter letter of your choice: ')) 
+            print('\n')  
+               
 
             if guessed == False:
                 
                 if not guess.isalpha():
-                    print(RED + 'Oops! You pressed wrong key. Try again!' + RESET)
-                    pass
-                elif len(str(guess)) != 1 :
-                    print(RED + 'Oops! You pressed the same letter multiple times. Try again!' + RESET)
+                    os.system('cls||clear')
+                    print(RED + 'Oops! You pressed wrong key. Try again!\n' + RESET)
+                    pass    
+                elif len(str(guess)) != 1:
+                    os.system('cls||clear')
+                    print(RED + 'Oops! You pressed the same letter multiple times. Try again!\n' + RESET)
                     pass
                 elif guess in used_letters:
+                    os.system('cls||clear')
                     warnings_remaining -= 1
                     print(RED + 'This letter has already been used, you lose 1 warning!\n' + RESET)
                     print(display_hangman(guesses_remaining))
                     if warnings_remaining == 0:
-                        print(RED + 'You run out of warning! This is the end of the game! Good luck next time!'+ RESET)
+                        os.system('cls||clear')
+                        print(RED + 'You run out of warning! This is the end of the game! Good luck next time!\n'+ RESET)
                         exit()
                 elif guess in set(gameword):
+                    os.system('cls||clear')
                     print(YELLOW + 'You got it right!' + RESET)
-                    used_letters.append(guess) 
+                    used_letters.append(guess)                
                     guesses_remaining -= 1
-                    press = input('Press any key to continue.')
-                    print('\n')
-                else:
-                    used_letters.append(guess)
-                    print('Sorry! That letters in not in the word.')
-                    print('You loose 1 guess.')
-                    guesses_remaining -= 1
-                    print(display_hangman(guesses_remaining))
-
+                    press = input(YELLOW +'Press any key to continue.\n' + RESET)
                     
-                if guesses_remaining <= 0:
-                    print(RED + 'Sorry, you have no more guesses available. The word was: '+ RESET, gameword)
+
+                elif guesses_remaining <= 0:
+                    os.system('cls||clear')
+                    print(RED + 'Sorry, you have no more guesses available. The word was: \n'+ RESET, gameword)
                     print(RED+ 'THE END' + RESET)
-                    exit()
+                    exit()  
+                else:
+                    os.system('cls||clear')
+                    used_letters.append(guess)
+                    print(RED + f"Sorry! Letter {guess} in not in the word."+ RESET)
+                    print('You loose 1 guess.\n')
+                    guesses_remaining -= 1
                     
 
-            else: 
-                print('Congratulations, you won!\n' + 'The gameword is: ', gameword)
-                break
+        else: 
+            os.system('cls||clear')
+            print(CYAN + 'Congratulations, you won!\n' + 'The gameword is: ' + RESET, gameword)
+            break
 
 def display_hangman(guesses_remaining):
     """
