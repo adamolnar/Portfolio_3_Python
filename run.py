@@ -19,9 +19,12 @@ CYAN = '\033[36m'
 UNDERLINE = '\033[4m'
 RESET = '\033[0m'
 
+
+
 """
 Game logo with use of pyfiglet library
 """
+os.system('cls||clear')
 result = pyfiglet.figlet_format("Hangman Game", font = "digital")
 print(CYAN + result + RESET)
 
@@ -37,12 +40,16 @@ def intro():
     If inncorect number is chosen it asks user to repet the action.
     """
     user_choice1 = input("-> ")
-    for num in user_choice1:    
+    
+    for num in user_choice1:
+           
         if (user_choice1 == '1'):
+            print(CYAN + result + RESET) 
             print(YELLOW + "This is where the fun begins!\n" + RESET)
             game(gameword)
         elif (user_choice1 == '2'):
             os.system('cls||clear')
+            print(CYAN + result + RESET) 
             print(YELLOW + UNDERLINE + "GAME RULES:" + RESET)
             print("-> You have to guess the secret word before the stick figure is hung.")
             print("-> The computer will indicate how many letters is in the word.")
@@ -56,6 +63,7 @@ def intro():
             print("(1)Yes, take me to the game.\n(2)No, exit the game.")
             wrong_choice()  
         else:
+            print(CYAN + result + RESET) 
             print(RED + "Incorrect number, please enter your choice again." + RESET)
         intro()
 
@@ -69,6 +77,7 @@ def wrong_choice():
             game(gameword)
         elif (user_choice2 == '2'):
             os.system('cls||clear')
+            print(CYAN + result + RESET) 
             print(RED + 'THE END'+ RESET)
             print('\n')
             exit()
@@ -122,12 +131,26 @@ def available_letters(used_letters):
             still_available[i] = (RED + "x" + GREEN )
     return ' ' .join(still_available) 
 
-def play_again():
+
+def try_to_match():
+    """
+    After running ou of guesses user can enter his choice of word and 
+    See if it matches with the gameword
+    """
+    print('Are you ready to match the word?\n')
+    try_out = str.upper(input(' '))
+    if set(try_out) == set(gameword):
+        print(CYAN + 'Congratulations, you won!\n' + '\n' +'The gameword is: ', gameword + RESET)
+        play_again(gameword)
+    else:
+        print(RED + 'Sorry, you lost!\n' + '\n' +'The gameword is: ', gameword + RESET)
+        play_again(gameword)
+
+
+def play_again(gameword):
     """
     Choice for the user to play again or to exit game
     """
-    result = pyfiglet.figlet_format("Hangman Game", font = "digital")
-    print(CYAN + result + RESET)
     print(YELLOW + 'Would you like to play again?\n'+ RESET)
     play = input('Y/N \n').upper()
     if play == 'Y':
@@ -141,7 +164,7 @@ def play_again():
         os.system('cls||clear')
         print(RED + 'Error. Please enter a valid letter!\n' + RESET)
         
-    play_again()   
+    play_again(gameword)   
             
 def game(gameword):
     """
@@ -154,6 +177,8 @@ def game(gameword):
     guessed = False
     guesses_remaining = 6
     warnings_remaining = 3
+    result = pyfiglet.figlet_format("Hangman Game", font = "digital")
+    print(CYAN + result + RESET)
     print('The game is loading...\n')
     print('A gameword is', len(gameword), 'letters long.\n')
 
@@ -191,7 +216,7 @@ def game(gameword):
                         os.system('cls||clear')
                         print(RED + f'You run out of warning! The gameword was:{gameword}. Good luck next time!'+ RESET)
                         print('\n')
-                        play_again()
+                        play_again(gameword)
                 elif guess in set(gameword):
                     os.system('cls||clear')
                     print(YELLOW + 'You got it right!\n' + RESET)
@@ -199,9 +224,12 @@ def game(gameword):
                     guesses_remaining -= 1
                 elif guesses_remaining <= 1:
                     os.system('cls||clear')
-                    print(RED + 'Sorry, you have no more guesses available. The word was: ' + RESET, gameword)
+                    print(RED + 'Sorry, you have no more guesses available. \n'+ RESET)
+                    print(show_guess_word_with_underscore(gameword, used_letters))
                     print('\n')
-                    play_again()
+                    try_to_match()
+                    print('\n')
+                    play_again(gameword)
                 else:
                     os.system('cls||clear')
                     used_letters.append(guess)
@@ -216,7 +244,7 @@ def game(gameword):
             print('\n')
             print('\n')
             print('\n')
-            play_again()
+            play_again(gameword)
 
 
 
@@ -321,7 +349,7 @@ def display_hangman(guesses_remaining):
 
 
 
-gameword = 'LOVE'
+gameword = 'STOP'
 start = intro()
 game(gameword)
 
