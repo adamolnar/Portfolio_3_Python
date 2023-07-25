@@ -40,10 +40,9 @@ def intro():
     for num in user_choice1:    
         if (user_choice1 == '1'):
             print(YELLOW + "This is where the fun begins!\n" + RESET)
-            os.system('cls||clear')
             game(gameword)
         elif (user_choice1 == '2'):
-            print("\n")
+            os.system('cls||clear')
             print(YELLOW + UNDERLINE + "GAME RULES:" + RESET)
             print("-> You have to guess the secret word before the stick figure is hung.")
             print("-> The computer will indicate how many letters is in the word.")
@@ -69,8 +68,9 @@ def wrong_choice():
         if (user_choice2 == '1'):
             game(gameword)
         elif (user_choice2 == '2'):
-            print("\n")
+            os.system('cls||clear')
             print(RED + 'THE END'+ RESET)
+            print('\n')
             exit()
         else:
             print(RED + "Incorrect number, please enter your choice again." + RESET)
@@ -126,7 +126,9 @@ def play_again():
     """
     Choice for the user to play again or to exit game
     """
-    print('Would you like to play again?\n')
+    result = pyfiglet.figlet_format("Hangman Game", font = "digital")
+    print(CYAN + result + RESET)
+    print(YELLOW + 'Would you like to play again?\n'+ RESET)
     play = input('Y/N \n').upper()
     if play == 'Y':
         os.system('cls||clear')
@@ -147,6 +149,7 @@ def game(gameword):
     Use previouse functions whitin this body
     Determine user choices scenario
     """
+    os.system('cls||clear')
     used_letters = []
     guessed = False
     guesses_remaining = 6
@@ -186,28 +189,33 @@ def game(gameword):
                     print(RED + 'This letter has already been used, you lose 1 warning!\n' + RESET)
                     if warnings_remaining == 0:
                         os.system('cls||clear')
-                        print(RED + 'You run out of warning! Good luck next time!\n'+ RESET)
+                        print(RED + f'You run out of warning! The gameword was:{gameword}. Good luck next time!'+ RESET)
+                        print('\n')
                         play_again()
                 elif guess in set(gameword):
                     os.system('cls||clear')
                     print(YELLOW + 'You got it right!\n' + RESET)
                     used_letters.append(guess)                
                     guesses_remaining -= 1
-                elif guesses_remaining <= 0:
+                elif guesses_remaining <= 1:
                     os.system('cls||clear')
-                    print(RED + 'Sorry, you have no more guesses available. The word was: \n'+ RESET, gameword)
-                    print(RED+ 'THE END' + RESET)
+                    print(RED + 'Sorry, you have no more guesses available. The word was: ' + RESET, gameword)
+                    print('\n')
                     play_again()
                 else:
                     os.system('cls||clear')
                     used_letters.append(guess)
-                    print(RED + f"Sorry! Letter {guess} is not in the word."+ RESET)
+                    print(RED + f"Sorry! Letter {guess} is not in the word." + RESET)
                     print('\n')
                     print('You loose 1 guess.\n')
                     guesses_remaining -= 1
         else: 
             os.system('cls||clear')
-            print(CYAN + 'Congratulations, you won!\n' + 'The gameword is: ' + RESET, gameword)
+            print(CYAN + 'Congratulations, you won!\n' + '\n' +'The gameword is: ', gameword + RESET)
+            print('\n')
+            print('\n')
+            print('\n')
+            print('\n')
             play_again()
 
 
