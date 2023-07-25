@@ -88,10 +88,12 @@ def wrong_choice():
 
 def get_word():
     """
-    Function to pull out guess word for the user from the word_list
+    Function to pull out guess word key from the dictionary
     """
-    word = random.choice(word_list)
+    word = random.choice(list(word_list.keys()))
     return word.upper()
+
+
 
 
 def is_word_guessed(gameword, used_letters):
@@ -181,6 +183,7 @@ def game(gameword):
     print(CYAN + result + RESET)
     print('The game is loading...\n')
     print('A gameword is', len(gameword), 'letters long.\n')
+    print('Little hint for you!')
 
     while True:
         """
@@ -349,7 +352,7 @@ def display_hangman(guesses_remaining):
 
 
 
-gameword = 'STOP'
+gameword = get_word()
 start = intro()
 game(gameword)
 
