@@ -85,31 +85,31 @@ def get_word():
     return word.upper()
 
 
-def is_word_guessed(gameword, letters_already_guessed):
+def is_word_guessed(gameword, used_letters):
     """
     Function to compare letters pickes by a user to letters contained in guess word
     If letters in word are equal to letters picked by a user return True and 'do stomething' otherwise return False
     and 'do something'
     """
-    if set(gameword) & set(letters_already_guessed) == set(gameword):
+    if set(gameword) & set(used_letters) == set(gameword):
         return True
     else:
         return False
 
-def show_guessed_word(gameword, letters_already_guessed):
+def show_guessed_word(gameword, used_letters):
     """
     Show to user the gameword by displaying number of '_' equivalent to length of the word
     Allow user to see the number of guessed letters and remaining letters that are needed to be guessed.
     """
     result_list = []
-    for i in range(len(gameword)):
-        if list(gameword)[i] in set(letters_already_guessed):
+    for i in range(len(list(gameword))):
+        if list(gameword)[i] in set(used_letters):
             result_list.append(list(gameword)[i])
         else:
             result_list.append("_ ")
-    return ''.join(map(str, result_list))
+    return ' '.join(map(str, result_list))
 
-def available_letters(letters_already_guessed):
+def available_letters(used_letters):
     """
     Function to return alphabet letter without letters which has been picked by the user
     User can see what letters are still available to pick 
@@ -118,7 +118,7 @@ def available_letters(letters_already_guessed):
     still_available = list(string.ascii_uppercase)
 
     for i in range(-len(still_available), 0):
-        if still_available[i] in letters_already_guessed:
+        if still_available[i] in used_letters:
             still_available[i] = (RED + "x" + GREEN )
     return ' ' .join(still_available) 
 
@@ -136,7 +136,6 @@ def game(gameword):
     warnings_remaining = 3
     print('The game is loading...\n')
     print('A gameword is', len(gameword), 'letters long.\n')
-    print('\n')
 
     while True:
         """
@@ -145,11 +144,13 @@ def game(gameword):
         If previously chosen letter is picked again, user looses 1 warning 
         """
         if not is_word_guessed(gameword, used_letters):
+            print(show_guessed_word(gameword, used_letters))
+            print('\n')
             print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
             print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + RESET)  
             print(display_hangman(guesses_remaining)) 
             guess = str.upper(input('Please enter letter of your choice: ')) 
-            print('\n')  
+            print('\n')
                
 
             if guessed == False:
@@ -166,19 +167,15 @@ def game(gameword):
                     os.system('cls||clear')
                     warnings_remaining -= 1
                     print(RED + 'This letter has already been used, you lose 1 warning!\n' + RESET)
-                    print(display_hangman(guesses_remaining))
                     if warnings_remaining == 0:
                         os.system('cls||clear')
                         print(RED + 'You run out of warning! This is the end of the game! Good luck next time!\n'+ RESET)
                         exit()
                 elif guess in set(gameword):
                     os.system('cls||clear')
-                    print(YELLOW + 'You got it right!' + RESET)
+                    print(YELLOW + 'You got it right!\n' + RESET)
                     used_letters.append(guess)                
                     guesses_remaining -= 1
-                    press = input(YELLOW +'Press any key to continue.\n' + RESET)
-                    
-
                 elif guesses_remaining <= 0:
                     os.system('cls||clear')
                     print(RED + 'Sorry, you have no more guesses available. The word was: \n'+ RESET, gameword)
@@ -188,6 +185,7 @@ def game(gameword):
                     os.system('cls||clear')
                     used_letters.append(guess)
                     print(RED + f"Sorry! Letter {guess} in not in the word."+ RESET)
+                    print('\n')
                     print('You loose 1 guess.\n')
                     guesses_remaining -= 1
                     
