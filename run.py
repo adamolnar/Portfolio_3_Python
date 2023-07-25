@@ -51,7 +51,7 @@ def intro():
             print("-> You have six chances to guess the word.")
             print("-> If you choose the letter, that letter will be delited from the list.")
             print("-> You have 3 warnings: you lose one warning each time if you chose a letter")
-            print("   which has been already used or symbols which are not letters.")
+            print("   which has been already used.")
             print("\n")
             print(YELLOW + UNDERLINE + "Are you ready now to begin the game?" + RESET)
             print("(1)Yes, take me to the game.\n(2)No, exit the game.")
@@ -96,7 +96,7 @@ def is_word_guessed(gameword, used_letters):
     else:
         return False
 
-def show_guessed_word(gameword, used_letters):
+def show_guess_word_with_underscore(gameword, used_letters):
     """
     Show to user the gameword by displaying number of '_' equivalent to length of the word
     Allow user to see the number of guessed letters and remaining letters that are needed to be guessed.
@@ -122,7 +122,24 @@ def available_letters(used_letters):
             still_available[i] = (RED + "x" + GREEN )
     return ' ' .join(still_available) 
 
-       
+def play_again():
+    """
+    Choice for the user to play again or to exit game
+    """
+    print('Would you like to play again?\n')
+    play = input('Y/N \n').upper()
+    if play == 'Y':
+        os.system('cls||clear')
+        game(gameword)
+    elif play == 'N':
+        os.system('cls||clear')
+        print(YELLOW + 'Bye, bye!\n'+ RESET)
+        exit()
+    else: 
+        os.system('cls||clear')
+        print(RED + 'Error. Please enter a valid letter!\n' + RESET)
+        
+    play_again()   
             
 def game(gameword):
     """
@@ -144,7 +161,7 @@ def game(gameword):
         If previously chosen letter is picked again, user looses 1 warning 
         """
         if not is_word_guessed(gameword, used_letters):
-            print(show_guessed_word(gameword, used_letters))
+            print(show_guess_word_with_underscore(gameword, used_letters))
             print('\n')
             print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
             print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + RESET)  
@@ -169,8 +186,8 @@ def game(gameword):
                     print(RED + 'This letter has already been used, you lose 1 warning!\n' + RESET)
                     if warnings_remaining == 0:
                         os.system('cls||clear')
-                        print(RED + 'You run out of warning! This is the end of the game! Good luck next time!\n'+ RESET)
-                        exit()
+                        print(RED + 'You run out of warning! Good luck next time!\n'+ RESET)
+                        play_again()
                 elif guess in set(gameword):
                     os.system('cls||clear')
                     print(YELLOW + 'You got it right!\n' + RESET)
@@ -180,24 +197,28 @@ def game(gameword):
                     os.system('cls||clear')
                     print(RED + 'Sorry, you have no more guesses available. The word was: \n'+ RESET, gameword)
                     print(RED+ 'THE END' + RESET)
-                    exit()  
+                    play_again()
                 else:
                     os.system('cls||clear')
                     used_letters.append(guess)
-                    print(RED + f"Sorry! Letter {guess} in not in the word."+ RESET)
+                    print(RED + f"Sorry! Letter {guess} is not in the word."+ RESET)
                     print('\n')
                     print('You loose 1 guess.\n')
                     guesses_remaining -= 1
-                    
-
         else: 
             os.system('cls||clear')
             print(CYAN + 'Congratulations, you won!\n' + 'The gameword is: ' + RESET, gameword)
-            break
+            play_again()
+
+
+
+
+
 
 def display_hangman(guesses_remaining):
     """
     Visual aid to help user follow stages of his progress by displaying animated character 
+    Copied from YouTube Tutorial 
     """
     stages = [  # final state: head, torso, both arms, and both legs
                 MAGENTA +
