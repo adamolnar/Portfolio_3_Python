@@ -181,7 +181,9 @@ def run_simulation():
             exit()
         else: 
             os.system('cls||clear')
-            print(RED + 'Error. Please enter a valid letter!\n' + RESET)    
+            print(CYAN + logo + RESET)
+             
+        play_again()  
         
                 
     def game(gameword):
@@ -231,7 +233,7 @@ def run_simulation():
                         os.system('cls||clear')
                         warnings_remaining -= 1
                         print(RED + 'This letter has already been used, you lose 1 warning!\n' + RESET)
-                        if warnings_remaining == 0:
+                        if warnings_remaining <= 0:
                             os.system('cls||clear')
                             print(RED + f'You run out of warning! The gameword was: {gameword}. Good luck next time!'+ RESET)
                             print('\n')
@@ -260,6 +262,7 @@ def run_simulation():
                 print(CYAN + 'Congratulations, you got it right!\n' + '\n' +'The gameword is: ', gameword + RESET)
                 print('\n') 
                 play_again()
+        game(gameword)
             
 
         
@@ -364,6 +367,9 @@ def run_simulation():
     word_value = word_items[1]
     start = intro()
     game(gameword)
+    again = play_again()
+
+
 
 run_simulation()
 
