@@ -11,12 +11,12 @@ from words import word_list
 Color variables to create user experience friendly colored text
 """
 BLACK = '\033[30m'
-RED = '\033[31m'
-GREEN = '\033[32m'
-YELLOW = '\033[33m'
-BLUE = '\033[34m'
-MAGENTA = '\033[35m'
-CYAN = '\033[36m'
+RED = '\033[91m'
+GREEN = '\033[92m'
+YELLOW = '\033[93m'
+BLUE = '\033[94m'
+MAGENTA = '\033[95m'
+CYAN = "\033[1;96m"  
 UNDERLINE = '\033[4m'
 RESET = '\033[0m'
 
@@ -142,16 +142,19 @@ def try_to_match():
     See if it matches with the gameword
     """
     print('HINT FOR YOU: -->', word_value)
+    print('\n')
     print('Please type your guess word?\n')
     try_out = str.upper(input())
     print('\n')
     if set(try_out) == set(gameword):
         os.system('cls||clear')
+        print(CYAN + result + RESET) 
         print(CYAN + 'Congratulations, you got it right!\n' + '\n' +'The gameword is: ', gameword + RESET)
         print('\n')
         play_again()
     else:
         os.system('cls||clear')
+        print(CYAN + result + RESET) 
         print(RED + '\nSorry, you word is not matching gameword!\n' + '\n' +'The gameword is: ', gameword + RESET)
         print('\n')
         play_again()
