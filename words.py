@@ -24,7 +24,7 @@ word_list = {
     'LTTLE':'Small in size or amount.\n',
     'LOCAL':'Relating to a specific area such as a neighbourhood or city.\n',
     'LONG':'Measuring a great distance from one end to the other.\n',
-    'LOW':'Not rising a great distance.\n',
+    'LOW':'Less than average height from top to bottom or to the top from the ground..\n',
     'LOUD':'Making a lot of noise.\n',
     'MAJOR':'Very important, serious or big.\n',
     'MATIONAL':'Involving an entire country.\n',
