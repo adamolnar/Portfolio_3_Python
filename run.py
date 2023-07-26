@@ -5,8 +5,6 @@ import os
 from colored import fg
 from words import word_list
 
-
-
 """
 Color variables to create user experience friendly colored text
 """
@@ -16,10 +14,9 @@ GREEN = '\033[92m'
 YELLOW = '\033[93m'
 BLUE = '\033[94m'
 MAGENTA = '\033[95m'
-CYAN = "\033[1;96m"  
+CYAN = "\033[1;96m"
 UNDERLINE = '\033[4m'
 RESET = '\033[0m'
-
 
 def run_simulation():
     """
@@ -29,9 +26,9 @@ def run_simulation():
     logo = pyfiglet.figlet_format("Hangman Game", font = "digital")
     print(CYAN + logo + RESET)
 
-    print(YELLOW + UNDERLINE  + "Welcome to the Hangman Game!" + RESET)
+    print(YELLOW + UNDERLINE + "Welcome to the Hangman Game!" + RESET)
     print("\n")
-    print(GREEN + "Do you know the rules?"+ RESET)
+    print(GREEN + "Do you know the rules?" + RESET)
     print("(1)Yes, take me to the game.\n(2)No, show me the rules.")
 
     def intro():
@@ -40,8 +37,7 @@ def run_simulation():
         Either user beginnes the game without further informations, or he gets to know the rules.
         If inncorect number is chosen it asks user to repet the action.
         """
-        user_choice1 = input("-> ")
-        
+        user_choice1 = input("-> ")  
         for num in user_choice1:
             if (user_choice1 == '1'):
                 print(CYAN + logo + RESET) 
@@ -84,7 +80,6 @@ def run_simulation():
             else:
                 print(RED + "Incorrect number, please enter your choice again." + RESET)
             wrong_choice()
-
 
     def get_word():
         """
@@ -133,7 +128,6 @@ def run_simulation():
                 still_available[i] = (RED + "x" + GREEN )
         return ' ' .join(still_available) 
 
-
     def try_to_match():
         """
         After running ou of guesses user can enter his choice of word and 
@@ -164,7 +158,6 @@ def run_simulation():
             play_again()
         try_to_match()
 
-
     def play_again():
         """
         Choice for the user to play again or to exit game
@@ -181,11 +174,9 @@ def run_simulation():
             exit()
         else: 
             os.system('cls||clear')
-            print(CYAN + logo + RESET)
-             
+            print(CYAN + logo + RESET)     
         play_again()  
-        
-                
+                   
     def game(gameword):
         """
         Function to implement the body of the program and
@@ -200,8 +191,6 @@ def run_simulation():
         print('The gameword is loading...')
         print('A gameword is', len(gameword), 'letters long.')
     
-        
-
         while True:
             """
             Decrease user remaining guesses and warning each time letter is entered by user 
@@ -218,7 +207,6 @@ def run_simulation():
                 guess = str.upper(input('Please enter letter of your choice: ')) 
                 print('\n')
                 
-
                 if guessed == False:
                     
                     if not guess.isalpha():
@@ -264,12 +252,6 @@ def run_simulation():
                 play_again()
         game(gameword)
             
-
-        
-
-
-
-
     def display_hangman(guesses_remaining):
         """
         Visual aid to help user follow stages of his progress by displaying animated character 
@@ -360,16 +342,12 @@ def run_simulation():
         ]
         return stages[guesses_remaining]
 
-
-
     word_items = get_word()
     gameword = word_items[0]
     word_value = word_items[1]
     start = intro()
     game(gameword)
     again = play_again()
-
-
 
 run_simulation()
 
