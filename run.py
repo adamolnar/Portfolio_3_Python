@@ -1,9 +1,10 @@
 import random
-import pyfiglet
-from words import word_list
 import string
-from colored import fg
+import pyfiglet
 import os
+from colored import fg
+from words import word_list
+
 
 
 """
@@ -86,271 +87,276 @@ def wrong_choice():
             print(RED + "Incorrect number, please enter your choice again." + RESET)
         wrong_choice()
 
+done = False
 
-def get_word():
-    """
-    Function to pull out guess word key and value from the dictionary
-    """
-    key_value = random.choice(list(word_list.items()))
-    tuple = list(key_value)
-    word = tuple[0]
-    value = tuple[1]
-    return word, value
+while not done:
 
-def is_word_guessed(gameword, used_letters):
-    """
-    Function to compare letters pickes by a user to letters contained in guess word
-    If letters in word are equal to letters picked by a user return True and 'do stomething' otherwise return False
-    and 'do something'
-    """
-    if set(gameword) & set(used_letters) == set(gameword):
-        return True
-    else:
-        return False
+    def get_word():
+        """
+        Function to pull out guess word key and value from the dictionary
+        """
+        key_value = random.choice(list(word_list.items()))
+        tuple = list(key_value)
+        word = tuple[0]
+        value = tuple[1]
+        return word, value
 
-def show_guess_word_with_underscore(gameword, used_letters):
-    """
-    Show to user the gameword by displaying number of '_' equivalent to length of the word
-    Allow user to see the number of guessed letters and remaining letters that are needed to be guessed.
-    """
-    result_list = []
-    for i in range(len(list(gameword))):
-        if list(gameword)[i] in set(used_letters):
-            result_list.append(list(gameword)[i])
+    def is_word_guessed(gameword, used_letters):
+        """
+        Function to compare letters pickes by a user to letters contained in guess word
+        If letters in word are equal to letters picked by a user return True and 'do stomething' otherwise return False
+        and 'do something'
+        """
+        if set(gameword) & set(used_letters) == set(gameword):
+            return True
         else:
-            result_list.append("_ ")
-    return ' '.join(map(str, result_list))
+            return False
 
-def available_letters(used_letters):
-    """
-    Function to return alphabet letter without letters which has been picked by the user
-    User can see what letters are still available to pick 
-    To avoid choosing the same letters
-    """
-    still_available = list(string.ascii_uppercase)
-
-    for i in range(-len(still_available), 0):
-        if still_available[i] in used_letters:
-            still_available[i] = (RED + "x" + GREEN )
-    return ' ' .join(still_available) 
-
-
-def try_to_match():
-    """
-    After running ou of guesses user can enter his choice of word and 
-    See if it matches with the gameword
-    """
-    print('Please type your guess word?\n')
-    try_out = str.upper(input())
-    print('\n')
-    if set(try_out) == set(gameword):
-        os.system('cls||clear')
-        print(CYAN + 'Congratulations, you got it right!\n' + '\n' +'The gameword is: ', gameword + RESET)
-        print('\n')
-        play_again()
-    else:
-        print(RED + 'Sorry, you lost!\n' + '\n' +'The gameword is: ', gameword + RESET)
-        print('\n')
-        play_again()
-
-
-def play_again():
-    """
-    Choice for the user to play again or to exit game
-    """
-    print(YELLOW + 'Would you like to play again?\n'+ RESET)
-    play = input('Y/N \n').upper()
-    if play == 'Y':
-        os.system('cls||clear')
-        get_word()
-        game(gameword) 
-    elif play == 'N':
-        os.system('cls||clear')
-        print(CYAN + result + RESET)
-        print(YELLOW + 'Bye, bye!\n'+ RESET)
-        exit()
-    else: 
-        os.system('cls||clear')
-        print(RED + 'Error. Please enter a valid letter!\n' + RESET)    
-    
-            
-def game(gameword):
-    """
-    Function to implement the body of the program and
-    Use previouse functions whitin this body
-    Determine user choices scenario
-    """
-    os.system('cls||clear')
-    used_letters = []
-    guessed = False
-    guesses_remaining = 6
-    warnings_remaining = 3
-    print('The game is loading...')
-    print('A gameword is', len(gameword), 'letters long.')
-    print('HINT FOR YOU: -->', word_value)
-    
-
-    while True:
+    def show_guess_word_with_underscore(gameword, used_letters):
         """
-        Decrease user remaining guesses and warning each time letter is entered by user 
-        If incorrect sign or repeating previusly picked letter is entered user is not losing guesses or wanrings
-        If previously chosen letter is picked again, user looses 1 warning 
+        Show to user the gameword by displaying number of '_' equivalent to length of the word
+        Allow user to see the number of guessed letters and remaining letters that are needed to be guessed.
         """
-        if not is_word_guessed(gameword, used_letters):
-            print(show_guess_word_with_underscore(gameword, used_letters))
-            print('\n')
-            print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
-            print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + RESET)  
-            print(display_hangman(guesses_remaining)) 
-            guess = str.upper(input('Please enter letter of your choice: ')) 
-            print('\n')
-               
+        result_list = []
+        for i in range(len(list(gameword))):
+            if list(gameword)[i] in set(used_letters):
+                result_list.append(list(gameword)[i])
+            else:
+                result_list.append("_ ")
+        return ' '.join(map(str, result_list))
 
-            if guessed == False:
-                
-                if not guess.isalpha():
-                    os.system('cls||clear')
-                    print(RED + 'Oops! You pressed wrong key. Try again!\n' + RESET)
-                    pass    
-                elif len(str(guess)) != 1:
-                    os.system('cls||clear')
-                    print(RED + 'Oops! You pressed the same letter multiple times. Try again!\n' + RESET)
-                    pass
-                elif guess in used_letters:
-                    os.system('cls||clear')
-                    warnings_remaining -= 1
-                    print(RED + 'This letter has already been used, you lose 1 warning!\n' + RESET)
-                    if warnings_remaining == 0:
-                        os.system('cls||clear')
-                        print(RED + f'You run out of warning! The gameword was: {gameword}. Good luck next time!'+ RESET)
-                        print('\n')
-                        play_again()
-                elif guess in set(gameword):
-                    os.system('cls||clear')
-                    print(YELLOW + 'You got it right!\n' + RESET)
-                    used_letters.append(guess)                
-                    guesses_remaining -= 1
-                elif guesses_remaining <= 1:
-                    os.system('cls||clear')
-                    print(RED + 'Sorry, you have no more guesses available. \n'+ RESET)
-                    print(show_guess_word_with_underscore(gameword, used_letters))
-                    print('\n')
-                    try_to_match()
-                    print('\n')
-                    play_again()
-                else:
-                    os.system('cls||clear')
-                    used_letters.append(guess)
-                    print(RED + f"Sorry! Letter {guess} is not in the word." + RESET)
-                    print('\n')
-                    print('You loose 1 guess.\n')
-                    guesses_remaining -= 1
-        else: 
+    def available_letters(used_letters):
+        """
+        Function to return alphabet letter without letters which has been picked by the user
+        User can see what letters are still available to pick 
+        To avoid choosing the same letters
+        """
+        still_available = list(string.ascii_uppercase)
+
+        for i in range(-len(still_available), 0):
+            if still_available[i] in used_letters:
+                still_available[i] = (RED + "x" + GREEN )
+        return ' ' .join(still_available) 
+
+
+    def try_to_match():
+        """
+        After running ou of guesses user can enter his choice of word and 
+        See if it matches with the gameword
+        """
+        print('HINT FOR YOU: -->', word_value)
+        print('Please type your guess word?\n')
+        try_out = str.upper(input())
+        print('\n')
+        if set(try_out) == set(gameword):
             os.system('cls||clear')
             print(CYAN + 'Congratulations, you got it right!\n' + '\n' +'The gameword is: ', gameword + RESET)
-            print('\n') 
+            print('\n')
+            play_again()
+        else:
+            os.system('cls||clear')
+            print(RED + '\nSorry, you word is not matching gameword!\n' + '\n' +'The gameword is: ', gameword + RESET)
+            print('\n')
             play_again()
 
+
+    def play_again():
+        """
+        Choice for the user to play again or to exit game
+        """
+        print(YELLOW + 'Would you like to play again?\n'+ RESET)
+        play = input('Y/N \n').upper()
+        if play == 'Y':
+            os.system('cls||clear')
+            done = True
+        elif play == 'N':
+            os.system('cls||clear')
+            print(CYAN + result + RESET)
+            print(YELLOW + 'Bye, bye!\n'+ RESET)
+            exit()
+        else: 
+            os.system('cls||clear')
+            print(RED + 'Error. Please enter a valid letter!\n' + RESET)    
+        
+                
+    def game(gameword):
+        """
+        Function to implement the body of the program and
+        Use previouse functions whitin this body
+        Determine user choices scenario
+        """
+        os.system('cls||clear')
+        used_letters = []
+        guessed = False
+        guesses_remaining = 6
+        warnings_remaining = 3
+        print('The gameword is loading...')
+        print('A gameword is', len(gameword), 'letters long.')
+        print('\n')
     
+        
+
+        while True:
+            """
+            Decrease user remaining guesses and warning each time letter is entered by user 
+            If incorrect sign or repeating previusly picked letter is entered user is not losing guesses or wanrings
+            If previously chosen letter is picked again, user looses 1 warning 
+            """
+            if not is_word_guessed(gameword, used_letters):
+                print(show_guess_word_with_underscore(gameword, used_letters))
+                print('\n')
+                print('HINT FOR YOU: -->', word_value)
+                print('\n')
+                print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
+                print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + RESET)  
+                print(display_hangman(guesses_remaining)) 
+                guess = str.upper(input('Please enter letter of your choice: ')) 
+                print('\n')
+                
+
+                if guessed == False:
+                    
+                    if not guess.isalpha():
+                        os.system('cls||clear')
+                        print(RED + '\nOops! You pressed wrong key. Try again!\n' + RESET)
+                        pass    
+                    elif len(str(guess)) != 1:
+                        os.system('cls||clear')
+                        print(RED + 'Oops! You pressed the same letter multiple times. Try again!\n' + RESET)
+                        pass
+                    elif guess in used_letters:
+                        os.system('cls||clear')
+                        warnings_remaining -= 1
+                        print(RED + 'This letter has already been used, you lose 1 warning!\n' + RESET)
+                        if warnings_remaining == 0:
+                            os.system('cls||clear')
+                            print(RED + f'You run out of warning! The gameword was: {gameword}. Good luck next time!'+ RESET)
+                            print('\n')
+                            play_again()
+                    elif guess in set(gameword):
+                        os.system('cls||clear')
+                        print(YELLOW + 'You got it right!\n' + RESET)
+                        used_letters.append(guess)                
+                        guesses_remaining -= 1
+                    elif guesses_remaining <= 1:
+                        os.system('cls||clear')
+                        print(RED + 'Sorry, you have no more guesses available. \n'+ RESET)
+                        print(show_guess_word_with_underscore(gameword, used_letters))
+                        print('\n')
+                        try_to_match()
+                        print('\n')
+                        play_again()
+                    else:
+                        os.system('cls||clear')
+                        used_letters.append(guess)
+                        print(RED + f"Sorry! Letter {guess} is not in the word." + RESET)
+                        print('\n')
+                        print(RED + 'You loose 1 guess.\n' + RESET)
+                        guesses_remaining -= 1
+            else: 
+                os.system('cls||clear')
+                print(CYAN + 'Congratulations, you got it right!\n' + '\n' +'The gameword is: ', gameword + RESET)
+                print('\n') 
+                play_again()
 
 
+    def display_hangman(guesses_remaining):
+        """
+        Visual aid to help user follow stages of his progress by displaying animated character 
+        Copied from YouTube Tutorial 
+        """
+        stages = [  # final state: head, torso, both arms, and both legs
+                    MAGENTA +
+                    """
+                    --------
+                    |      |
+                    |      O
+                    |     \\|/
+                    |      |
+                    |     / \\
+                    -
+                    """ ,
+                    # head, torso, both arms, and one leg
+                    MAGENTA + 
+                    """
+                    --------
+                    |      |
+                    |      O
+                    |     \\|/
+                    |      |
+                    |     / 
+                    -
+                    """
+                    + RESET,
+                    # head, torso, and both arms
+                    MAGENTA +
+                    """
+                    --------
+                    |      |
+                    |      O
+                    |     \\|/
+                    |      |
+                    |      
+                    -
+                    """ + RESET ,
+                    # head, torso, and one arm
+                    MAGENTA +
+                    """
+                    --------
+                    |      |
+                    |      O
+                    |     \\|
+                    |      |
+                    |     
+                    -
+                    """
+                    + RESET,
+                    # head and torso
+                    MAGENTA + 
+                    """
+                    --------
+                    |      |
+                    |      O
+                    |      |
+                    |      |
+                    |     
+                    -
+                    """
+                    + RESET ,
+                    # head
+                    MAGENTA +
+                    """
+                    --------
+                    |      |
+                    |      O
+                    |    
+                    |      
+                    |     
+                    -
+                    """
+                    + RESET,
+                    # initial empty state
+                    MAGENTA +
+                    """
+                    --------
+                    |      |
+                    |      
+                    |    
+                    |      
+                    |     
+                    -
+                    """
+                    + RESET
+        ]
+        return stages[guesses_remaining]
 
+    word_items = get_word()
+    gameword = word_items[0]
+    word_value = word_items[1]
+    start = intro()
 
-def display_hangman(guesses_remaining):
-    """
-    Visual aid to help user follow stages of his progress by displaying animated character 
-    Copied from YouTube Tutorial 
-    """
-    stages = [  # final state: head, torso, both arms, and both legs
-                MAGENTA +
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |     / \\
-                   -
-                """ ,
-                # head, torso, both arms, and one leg
-                MAGENTA + 
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |     / 
-                   -
-                """
-                + RESET,
-                # head, torso, and both arms
-                MAGENTA +
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|/
-                   |      |
-                   |      
-                   -
-                """ + RESET ,
-                # head, torso, and one arm
-                MAGENTA +
-                """
-                   --------
-                   |      |
-                   |      O
-                   |     \\|
-                   |      |
-                   |     
-                   -
-                """
-                + RESET,
-                # head and torso
-                MAGENTA + 
-                """
-                   --------
-                   |      |
-                   |      O
-                   |      |
-                   |      |
-                   |     
-                   -
-                """
-                + RESET ,
-                # head
-                MAGENTA +
-                """
-                   --------
-                   |      |
-                   |      O
-                   |    
-                   |      
-                   |     
-                   -
-                """
-                + RESET,
-                # initial empty state
-                MAGENTA +
-                """
-                   --------
-                   |      |
-                   |      
-                   |    
-                   |      
-                   |     
-                   -
-                """
-                + RESET
-    ]
-    return stages[guesses_remaining]
-
-word_items = get_word()
-gameword = word_items[0]
-word_value = word_items[1]
-start = intro()
 game(gameword)
+
 
    
 
