@@ -31,7 +31,7 @@ word_list = {
     'NEW':'Recently created, bought or rented.',
     'OLD':'Having existed for a long time.',
     'ONLY':'Alone in a category; having no others like it.',
-    'OPEN':'Not closed; able to be entered.'
+    'OPEN':'Not closed; able to be entered.',
     'OTHER':"Referring to a thing or person that's different from the one that's already known or mentioned.",
     'PERSONAL':'Belonging to or affecting a particular person.',
     'POLITICAL':'Relating to government or politics.',
