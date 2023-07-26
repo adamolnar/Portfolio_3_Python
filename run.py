@@ -80,7 +80,7 @@ def wrong_choice():
         elif (user_choice2 == '2'):
             os.system('cls||clear')
             print(CYAN + result + RESET) 
-            print(RED + 'THE END'+ RESET)
+            print(YELLOW + 'BYE BYE'+ RESET)
             print('\n')
             exit()
         else:
@@ -193,7 +193,6 @@ def game(gameword):
     warnings_remaining = 3
     print('The gameword is loading...')
     print('A gameword is', len(gameword), 'letters long.')
-    print('\n')
    
     
 
@@ -206,8 +205,7 @@ def game(gameword):
         if not is_word_guessed(gameword, used_letters):
             print(show_guess_word_with_underscore(gameword, used_letters))
             print('\n')
-            print('HINT FOR YOU: -->', word_value)
-            print('\n')
+            print('WORD DEFFINITION: -->', word_value)
             print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
             print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + RESET)  
             print(display_hangman(guesses_remaining)) 
@@ -248,17 +246,17 @@ def game(gameword):
                     print('\n')
                     play_again()
                 else:
-                    os.system('cls||clear')
                     used_letters.append(guess)
+                    os.system('cls||clear')
                     print(RED + f"Sorry! Letter {guess} is not in the word." + RESET)
                     print('\n')
-                    print('You loose 1 guess.\n')
+                    print(RED + 'You loose 1 guess.\n' + RESET)
                     guesses_remaining -= 1
         else: 
             os.system('cls||clear')
             print(CYAN + 'Congratulations, you got it right!\n' + '\n' +'The gameword is: ', gameword + RESET)
             print('\n') 
-            intro()
+            play_again()
 
     
 
