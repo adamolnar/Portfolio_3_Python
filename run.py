@@ -222,7 +222,7 @@ def run_simulation():
                 guess = str.upper(input('Please enter letter of your choice:'))
                 print('\n')
 
-                if guessed == False:
+                if guessed is False:
                     if not guess.isalpha():
                         os.system('cls||clear')
                         print(RED + 'Oops! Wrong key. Try again!\n' + RESET)
