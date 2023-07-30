@@ -222,7 +222,7 @@ def run_simulation():
                 guess = str.upper(input('Please enter letter of your choice:'))
                 print('\n')
 
-                if guessed = False:
+                if guessed == False:
                     if not guess.isalpha():
                         os.system('cls||clear')
                         print(RED + 'Oops! Wrong key. Try again!\n' + RESET)
@@ -239,7 +239,7 @@ def run_simulation():
                             os.system('cls||clear')
                             print(RED + 'You run out of warning!' + RESET)
                             print(RED + f'The word was: {gameword}.' + RESET)
-                            print(Yellow + 'Good luck next time!' + RESET)
+                            print(RED + 'Good luck next time!' + RESET)
                             print('\n')
                             play_again()
                     elif guess in set(gameword):
@@ -266,7 +266,7 @@ def run_simulation():
             else:
                 os.system('cls||clear')
                 print(CYAN + 'Congratulations!\n' + RESET)
-                print(CYAN f'The gameword is:', gameword + RESET)
+                print(CYAN + f'The gameword is:', gameword + RESET)
                 print('\n')
                 play_again()
         game(gameword)
