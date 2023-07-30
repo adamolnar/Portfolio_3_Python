@@ -62,5 +62,19 @@ Solve the puzzle before the hangman dies.
 
 ![Screenshot after correct choice](/screenshots/Screenshot_yellow_feedback.png)
 
+**TYPE YOUR GUESS WORD**
+
+![Screenshot type your guess word](/screenshots/Screenshot_type_your_guess_word.png)
+
+- After user runs out of ramaining guesses, he has a chance to type his guess word and see if it is a match with the game word.
+- If the user's guess word match the game word, logo of the game is displayed together with Congratulations feedback.
+- The gameword is displayed.
+- Finally user is asked if he wants to continue to play or would like to exit the game.
+
+![Screenshot congaratulations](/screenshots/Screenshot_congrats.png)
+
+
+
+
 
 
