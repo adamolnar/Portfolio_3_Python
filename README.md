@@ -73,6 +73,33 @@ Solve the puzzle before the hangman dies.
 
 ![Screenshot congaratulations](/screenshots/Screenshot_congrats.png)
 
+- If the user's guess word in not a match with gameword, feedback is dispayed in red.
+- Finally user is asked if he wants to continue to play or would like to exit the game.
+
+![Screenshot not a match](/screenshots/Screenshot_not_a_match.png)
+
+
+**INPUT VALIDATION AND ERROR-CHECKING**
+
+- If user's choice is invalid, error will be displayed.
+
+![Screenshot of incorrect number entry](/screenshots/Screenshot_incorrect_number.png)
+
+- If user's choice is invalid, error will be displayed.
+
+![Screenshot of invalid choice](/screenshots/Screenshot_invalid_choice.png)
+
+- If the  letter entry is not equal one, error will be displayed.
+
+![Screenshot of invalid multiple letters](/screenshots/Screenshot_error_multiple.png)
+
+- If the user presses wrong key which is not a letter, error will be displayed.
+
+![Screenshot of invalid key](/screenshots/Screenshot_wrong_key.png)
+
+
+
+
 
 
 
