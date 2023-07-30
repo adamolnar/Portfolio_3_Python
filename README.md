@@ -56,6 +56,11 @@ Solve the puzzle before the hangman dies.
 
 ![Screenshot after first choice](/screenshots/Screenshot_first_choice.png)
 
+- At the top of the terminal A feedback is displayed for the user. If it is incorrect quess, feedback is displayed in red color. If guess is correct feedback is diplayed in yellow color.
+- After each letter choice user gets an update on how many moves are left and how many warnings are left. 
+- The letter which was picked is replaced in alphabet with the red x.
+
+![Screenshot after correct choice](/screenshots/Screenshot_yellow_feedback.png)
 
 
 

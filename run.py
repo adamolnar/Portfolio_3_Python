@@ -188,6 +188,7 @@ def run_simulation():
         guessed = False
         guesses_remaining = 6
         warnings_remaining = 3
+        incorrect_guess = 6
         print('The gameword is loading...')
         print('A gameword is', len(gameword), 'letters long.')
     
@@ -203,7 +204,7 @@ def run_simulation():
                 print(BLUE + 'WORD DEFFINITION: -->', word_value + RESET)
                 print('You have', int(guesses_remaining), "guess(es) left and", int(warnings_remaining), 'warning(s) left!','\n')
                 print(GREEN + "Available letters: ", available_letters(used_letters),'\n' + RESET)  
-                print(display_hangman(guesses_remaining)) 
+                print(display_hangman(incorrect_guess)) 
                 guess = str.upper(input('Please enter letter of your choice: ')) 
                 print('\n')
                 
@@ -245,6 +246,7 @@ def run_simulation():
                         print(RED + f"Sorry! Letter {guess} is not in the word." + RESET)
                         print(RED + 'You loose 1 guess.\n' + RESET)
                         guesses_remaining -= 1
+                        incorrect_guess -=1
             else: 
                 os.system('cls||clear')
                 print(CYAN + 'Congratulations, you got it right!\n' + '\n' +'The gameword is: ', gameword + RESET)
@@ -252,7 +254,7 @@ def run_simulation():
                 play_again()
         game(gameword)
             
-    def display_hangman(guesses_remaining):
+    def display_hangman(incorrect_guess):
         """
         Visual aid to help user follow stages of his progress by displaying animated character 
         Copied from YouTube Tutorial 
@@ -340,7 +342,7 @@ def run_simulation():
                     """
                     + RESET
         ]
-        return stages[guesses_remaining]
+        return stages[incorrect_guess]
 
     word_items = get_word()
     gameword = word_items[0]
