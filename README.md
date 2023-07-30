@@ -1,5 +1,5 @@
 ![Screenshot of the game logo](/screenshots/Hangman%20log.png)
-## Is there a better way to learn new words if not by plying game and having fun...
+## Is there a better way to learn new words if not by plying game and having fun...?
 
 **HANGMAN** is an old school favorite, a word game where the goal is simply to find the missing word. This way of expanding your vocabulary is fun and effective. 
 
@@ -96,6 +96,25 @@ Solve the puzzle before the hangman dies.
 - If the user presses wrong key which is not a letter, error will be displayed.
 
 ![Screenshot of invalid key](/screenshots/Screenshot_wrong_key.png)
+
+### Future Features 
+- Create larger dictionary to generate new words.
+- Create different dicitonaries to allow user to choose the group of word like: animals, countries, movies, famous people etc.
+- Create animation for the hangman.
+- Create separate button for the clue or word description.
+
+## Data model
+
+?
+
+
+## Testing 
+
+I have manually tested this project by doing the following:
+
+- Passed the code through a PEP8 linter and confirmed there are no problems.
+
+
 
 
 
