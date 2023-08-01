@@ -39,11 +39,11 @@ Solve the puzzle before the hangman dies.
 - By pressing (1) user is taken directly to the main game page where he can start guessing gameword.
 - By pressing (2) user is taken to the Game Rules, where in details is explained how to play this game. Here are also two options available to the user: either they continue to the main game or can exit game.
 
-![Screenshot rules](/screenshots/Screenshot_game_rules%20(1).png)
+![Screenshot rules](/screenshots/Screenshot_rules.png)
 
 **MAIN GAME**
 
-![Screenshot main game](/screenshots/Screenshot_main_game.png)
+![Screenshot main game](/screenshots/Screenshot_main.png)
 
 - Firstly the randon word from words.py file is generated.
 - User can see how many letters contains game word.
@@ -54,44 +54,44 @@ Solve the puzzle before the hangman dies.
 - The visualization of gallows is displayed which is empty. But by each incorrect choice the hangmans body parts are added. 
 - Bellow user is asked to enter his choice of the letter.
 
-![Screenshot after first choice](/screenshots/Screenshot_first_choice.png)
+![Screenshot after first choice](/screenshots/Screenshot_false%20.png)
 
 - At the top of the terminal A feedback is displayed for the user. If it is incorrect quess, feedback is displayed in red color. If guess is correct feedback is diplayed in yellow color.
 - After each letter choice user gets an update on how many moves are left and how many warnings are left. 
 - The letter which was picked is replaced in alphabet with the red x.
 
-![Screenshot after correct choice](/screenshots/Screenshot_yellow_feedback.png)
+![Screenshot after correct choice](/screenshots/Screenshot_correct.png)
 
 **TYPE YOUR GUESS WORD**
 
-![Screenshot type your guess word](/screenshots/Screenshot_type_your_guess_word.png)
+![Screenshot type your guess word](/screenshots/Screenshot_type_your_word.png)
 
 - After user runs out of ramaining guesses, he has a chance to type his guess word and see if it is a match with the game word.
 - If the user's guess word match the game word, logo of the game is displayed together with Congratulations feedback.
 - The gameword is displayed.
 - Finally user is asked if he wants to continue to play or would like to exit the game.
 
-![Screenshot congaratulations](/screenshots/Screenshot_congrats.png)
+![Screenshot congaratulations](/screenshots/Screenshot_congatrs.png)
 
 - If the user's guess word in not a match with gameword, feedback is dispayed in red.
 - Finally user is asked if he wants to continue to play or would like to exit the game.
 
-![Screenshot not a match](/screenshots/Screenshot_not_a_match.png)
+![Screenshot not a match](/screenshots/Screenshot_not_a_mtch.png)
 
 
 **INPUT VALIDATION AND ERROR-CHECKING**
 
 - If user's choice is invalid, error will be displayed.
 
-![Screenshot of incorrect number entry](/screenshots/Screenshot_incorrect_number.png)
+![Screenshot of incorrect number entry](/screenshots/Screenshot_error.png)
 
 - If user's choice is invalid, error will be displayed.
 
-![Screenshot of invalid choice](/screenshots/Screenshot_invalid_choice.png)
+![Screenshot of invalid choice](/screenshots/Screenshot_error2.png)
 
 - If the  letter entry is not equal one, error will be displayed.
 
-![Screenshot of invalid multiple letters](/screenshots/Screenshot_error_multiple.png)
+![Screenshot of invalid multiple letters](/screenshots/Screenshot_oops.png)
 
 - If the user presses wrong key which is not a letter, error will be displayed.
 
@@ -113,6 +113,50 @@ Solve the puzzle before the hangman dies.
 I have manually tested this project by doing the following:
 
 - Passed the code through a PEP8 linter and confirmed there are no problems.
+- Given invalid inputs like numbers which are expected, empty input, string instead of letters, same input twice.
+- Tested in my local terminal and the Code Institute Heroku terminal.
+
+## Bugs
+
+### Solved Bugs 
+
+?
+
+### Remaining Bugs
+- No bugs remaining.
+
+### Validator Testing
+- PEP 8
+  - white spaces
+  - to long strings 
+  - 
+
+# Deployment
+
+This project was deployed using Code Institute's mock terminal for Heroku.
+
+- Steps for deplyment:
+  - Fork or clone this repository.
+  - Create a new Heroku app.
+  - Set the buildbacks to Python and NodeJS in that order.
+  - Link the Heroku app to the repository.
+  - Click on **Deploy**.
+
+# Credits
+
+- Code Institute for the deployment terminal.
+- Hangman animation from [GitHubGist](https://gist.github.com/lupinetti/8f89e5f33750aa7c91c3).
+- Hangman Tutorial: [How to build HANGMAN with Python in 10 MINUTES](https://www.youtube.com/watch?v=m4nEnsavl6w).
+- How to build alphabet range in Python from [StackOverflow](https://stackoverflow.com/questions/16060899/alphabet-range-in-python).
+- How to use random library [Random-Word 1.0.11](https://pypi.org/project/Random-Word/).
+- How to use colored library [colored 2.2.3](https://pypi.org/project/colored/).
+- How to Print Colored Text in Python [StudyTonight](https://www.studytonight.com/python-howtos/how-to-print-colored-text-in-python#:~:text=We%20can%20use%20the%20built,and%20get%20your%20desired%20output.).
+- How can I get a random key-value pair from a dictionary [StackOverflow](https://stackoverflow.com/questions/4859292/how-can-i-get-a-random-key-value-pair-from-a-dictionary).
+- Inspiration from [HangmanGame](https://thewordsearch.com/hangman/).
+- Dictionary [Lingoda](https://blog.lingoda.com/en/top-50-adjectives-in-english-you-need-to-know/).
+
+
+
 
 
 

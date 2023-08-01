@@ -235,7 +235,7 @@ def run_simulation():
                         os.system('cls||clear')
                         warnings_remaining -= 1
                         print(RED + 'This letter was already used!\n' + RESET)
-                        if warnings_remaining <= 0:
+                        if warnings_remaining == 0:
                             os.system('cls||clear')
                             print(RED + 'You run out of warning!' + RESET)
                             print(RED + f'The word was: {gameword}.' + RESET)
@@ -247,7 +247,7 @@ def run_simulation():
                         print(YELLOW + 'You got it right!\n' + RESET)
                         used_letters.append(guess)
                         guesses_remaining -= 1
-                    elif guesses_remaining <= 1:
+                    elif guesses_remaining == 0:
                         os.system('cls||clear')
                         print(RED + 'Sorry,no more guesses available.' + RESET)
                         print(show_word_underscore(gameword, used_letters))
