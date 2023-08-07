@@ -27,6 +27,10 @@ Solve the puzzle before the hangman dies.
 
 ## Features
 
+## Mock-up:
+
+![Mock-up](/screenshots/Mock_up.png)
+
 ### Existing Features
 
 **START**
@@ -95,17 +99,12 @@ Solve the puzzle before the hangman dies.
 
 - If the user presses wrong key which is not a letter, error will be displayed.
 
-![Screenshot of invalid key](/screenshots/Screenshot_wrong_key.png)
 
 ### Future Features 
 - Create larger dictionary to generate new words.
 - Create different dicitonaries to allow user to choose the group of word like: animals, countries, movies, famous people etc.
 - Create animation for the hangman.
 - Create separate button for the clue or word description.
-
-## Data model
-
-?
 
 
 ## Testing 

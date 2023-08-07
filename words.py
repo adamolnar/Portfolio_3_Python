@@ -27,7 +27,7 @@ word_list = {
     'LOW':'Less than average height from top to bottom \n or to the top from the ground..\n',
     'LOUD':'Making a lot of noise.\n',
     'MAJOR':'Very important, serious or big.\n',
-    'MATIONAL':'Involving an entire country.\n',
+    'NATIONAL':'Involving an entire country.\n',
     'NEW':'Recently created, bought or rented.\n',
     'OLD':'Having existed for a long time.\n',
     'ONLY':'Alone in a category; having no others like it.\n',
