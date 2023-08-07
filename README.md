@@ -135,8 +135,13 @@ I have manually tested this project by doing the following:
 This project was deployed using Code Institute's mock terminal for Heroku.
 
 - Steps for deplyment:
-  - Fork or clone this repository.
+  - After creating an account and logging in, click "New"  
+    to create a new app from the dashboard.
   - Create a new Heroku app.
+  - Create a unique name for the app and select my region; press "Create app".
+  - Go to "Settings" and navigate to Config Vars.
+  - Add Config Vars.
+    - For this app was used: KEY = PORT : VALUE = 8000.
   - Set the buildbacks to Python and NodeJS in that order.
   - Link the Heroku app to the repository.
   - Click on **Deploy**.
