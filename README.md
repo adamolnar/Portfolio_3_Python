@@ -132,16 +132,26 @@ I have manually tested this project by doing the following:
 
 ### Solved Bugs 
 
-?
+- AFter user choices guesses ramaining were decreasing accordingly but even when the letter guesses was right, the hangman animaton was showing each part of body being added although my game visialization was to skip the body part added to hangman each time the guessed letter is corect. i Had to add extra variable to store incorrect quesses in order to fix it.
+
+incorrect_guess = 0
+
+- In function game(gameword) after testing guesses remaining were going to -1 although user has only 6 guesses available. It was because  incorrect_guess were assigned value of 6 so i fixed it by assigning value of 0.
+
+- After user runs out of guesses has a choice of either play again the game or exit. When I looped back to function play_again(), gameword was the same as the previous one. I had to wrap up whole game in function run_simulation() in order to generate each tile new word.
+
+- After using colored library for better user experience I have noticed once I set the color for one paragraph it was coloring rest of the text as well. I needed to add RESET at the end of each paragraph in order to keep different text in different colores.
+
+
 
 ### Remaining Bugs
 - No bugs remaining.
 
 ### Validator Testing
 - PEP 8
-  - white spaces
-  - to long strings 
-  - 
+  - White spaces
+  - To long strings 
+  - After all corections no error were returned PEP8online.com
 
 # Deployment
 

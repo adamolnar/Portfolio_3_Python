@@ -199,7 +199,7 @@ def run_simulation():
         guessed = False
         guesses_remaining = 6
         warnings_remaining = 3
-        incorrect_guess = 6
+        incorrect_guess = 0
         print('The gameword is loading...')
         print('A gameword is', len(gameword), 'letters long.')
 
