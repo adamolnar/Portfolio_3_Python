@@ -21,7 +21,7 @@ word_list = {
     'IMPORTANT':'Very meaningful, valuable or powerful.\n',
     'INTERNATIONAL': 'Involving two or more countries.\n',
     'LATE':'Happening at or near the end of a period of time.\n',
-    'LTTLE':'Small in size or amount.\n',
+    'LITTLE':'Small in size or amount.\n',
     'LOCAL':'Relating to a specific area such as a neighbourhood or city.\n',
     'LONG':'Measuring a great distance from one end to the other.\n',
     'LOW':'Less than average height from top to bottom \n or to the top from the ground..\n',

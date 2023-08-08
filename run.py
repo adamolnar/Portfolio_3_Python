@@ -223,14 +223,20 @@ def run_simulation():
                 print('\n')
 
                 if guessed is False:
+                    """
+                    If user press not a letter key or more than one letter
+                    """
                     if not guess.isalpha():
                         os.system('cls||clear')
                         print(RED + 'Oops! Wrong key. Try again!\n' + RESET)
-                        pass
                     elif len(str(guess)) != 1:
                         os.system('cls||clear')
                         print(RED + 'Oops! Try again!\n' + RESET)
-                        pass
+                    """
+                    If the user press the same letter which was
+                    Previously chosen
+                    And runs out of warning he has choice to play again
+                    """
                     elif guess in used_letters:
                         os.system('cls||clear')
                         warnings_remaining -= 1
@@ -242,11 +248,18 @@ def run_simulation():
                             print(RED + 'Good luck next time!' + RESET)
                             print('\n')
                             play_again()
+                    """
+                    If the user guesses the correct letter
+                    """
                     elif guess in set(gameword):
                         os.system('cls||clear')
                         print(YELLOW + 'You got it right!\n' + RESET)
                         used_letters.append(guess)
                         guesses_remaining -= 1
+                    """
+                    If the user guess is incorrect and runs out
+                    Of guesses remaining
+                    """
                     else:
                         used_letters.append(guess)
                         os.system('cls||clear')
@@ -255,14 +268,17 @@ def run_simulation():
                         print(RED + 'You loose 1 guess.\n' + RESET)
                         guesses_remaining -= 1
                         incorrect_guess -= 1
-                        if guesses_remaining == 0:
+                        if guesses_remaining > 1:
                             os.system('cls||clear')
-                            print(RED + 'Sorry,no more guesses available.' + RESET)
+                            print(RED + 'Sorry,no guesses available.' + RESET)
                             print(show_word_underscore(gameword, used_letters))
                             print('\n')
                             try_to_match()
                             print('\n')
                             play_again()
+            """
+            If the user guesses the gameword
+            """
             else:
                 os.system('cls||clear')
                 print(CYAN + 'Congratulations!\n' + RESET)

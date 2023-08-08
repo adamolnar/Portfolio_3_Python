@@ -25,13 +25,11 @@ Solve the puzzle before the hangman dies.
 - If you choose the letter, that letter will be deleted from the list.
 - You have 3 warnings: you lose one warning each time if you chose a letter which has been already used.
 
-## Features
-
 ## Mock-up:
 
 ![Mock-up](/screenshots/Mock_up.png)
 
-### Existing Features
+## Features/Testing
 
 **START**
 
@@ -99,6 +97,28 @@ Solve the puzzle before the hangman dies.
 
 - If the user presses wrong key which is not a letter, error will be displayed.
 
+![TEST_1](/screenshots/TEST_1.png)
+
+- Checking for get_word function if it gets random word 
+
+![TEST_2](/screenshots/TEST_2.png)
+
+- Checking for is_word_guessed function to return True if letters guessed are in the gameword or False if it doesn't 
+
+![TEST_4](/screenshots/TEST_4.png)
+
+- Generating underscores equivalent to length of the gameword and placing letter guessed in correct position.
+
+
+![TEST_5](/screenshots/TEST_5.png)
+
+- Checking if function removes letters already picked from the alphabet. 
+
+![PEP 8](/screenshots/PEP_8.png)
+
+- Passed the code through a PEP8 linter and confirmed there are no problems.
+- Given invalid inputs like numbers which are expected, empty input, string instead of letters, same input twice.
+- Tested in my local terminal and the Code Institute Heroku terminal.
 
 ### Future Features 
 - Create larger dictionary to generate new words.
@@ -106,28 +126,6 @@ Solve the puzzle before the hangman dies.
 - Create animation for the hangman.
 - Create separate button for the clue or word description.
 
-
-## Testing 
-
-I have manually tested this project by doing the following:
-
-- Manual Testing:
-
-**TEST 1**
-![TEST_1](/screenshots/TEST_1.png)
-
-**TEST 2**
-![TEST_2](/screenshots/TEST_2.png)
-
-**TEST 3**
-![TEST_4](/screenshots/TEST_4.png)
-
-**TEST 4**
-![TEST_5](/screenshots/TEST_5.png)
-
-- Passed the code through a PEP8 linter and confirmed there are no problems.
-- Given invalid inputs like numbers which are expected, empty input, string instead of letters, same input twice.
-- Tested in my local terminal and the Code Institute Heroku terminal.
 
 ## Bugs
 
@@ -137,7 +135,7 @@ I have manually tested this project by doing the following:
 
 incorrect_guess = 0
 
-- In function game(gameword) after testing guesses remaining were going to -1 although user has only 6 guesses available. I had to change the order of this function which fixed the problem.
+- In function game(gameword) after testing guesses remaining were going to -1 although user has only 6 guesses available. I had to change the order of this function which fixed the problem and change value of variable to less than 1.
 
 
       elif guesses_remaining == 0:
@@ -165,7 +163,7 @@ incorrect_guess = 0
           print(RED + 'You loose 1 guess.\n' + RESET)
           guesses_remaining -= 1
           incorrect_guess -= 1
-          if guesses_remaining == 0:
+          if guesses_remaining > 1:
               os.system('cls||clear')
               print(RED + 'Sorry,no more guesses available.' + RESET)
               print(show_word_underscore(gameword, used_letters))
@@ -208,6 +206,7 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 # Credits
 
 - Code Institute for the deployment terminal.
+- Code Institute Project Scope [Code Institute](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+PE_PAGPPF+2021_Q2/courseware/b3378fc1159e43e3b70916fdefdfae51/605f34e006594dc4ae19f5e60ec75e2e/).
 - Hangman animation from [GitHubGist](https://gist.github.com/lupinetti/8f89e5f33750aa7c91c3).
 - Hangman Tutorial: [How to build HANGMAN with Python in 10 MINUTES](https://www.youtube.com/watch?v=m4nEnsavl6w).
 - How to build alphabet range in Python from [StackOverflow](https://stackoverflow.com/questions/16060899/alphabet-range-in-python).
