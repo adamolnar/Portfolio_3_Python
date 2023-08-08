@@ -12,7 +12,6 @@ Be warned, every time you guess a letter wrong you loose a life and the hangman 
 Solve the puzzle before the hangman dies.
 
 [Here is live version of my project.](https://hangman-game-portfolio3-04c41eba22eb.herokuapp.com/)
-
 ![Screenshot_am_i_resposive](/screenshots/Screenshot_am_i_resposive.png)
 
 ## How to play
@@ -110,6 +109,20 @@ Solve the puzzle before the hangman dies.
 ## Testing 
 
 I have manually tested this project by doing the following:
+
+- Manual Testing:
+
+**TEST 1**
+![TEST_1](/screenshots/TEST_1.png)
+
+**TEST 2**
+![TEST_2](/screenshots/TEST_2.png)
+
+**TEST 3**
+![TEST_4](/screenshots/TEST_4.png)
+
+**TEST 4**
+![TEST_5](/screenshots/TEST_5.png)
 
 - Passed the code through a PEP8 linter and confirmed there are no problems.
 - Given invalid inputs like numbers which are expected, empty input, string instead of letters, same input twice.
