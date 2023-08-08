@@ -232,11 +232,6 @@ def run_simulation():
                     elif len(str(guess)) != 1:
                         os.system('cls||clear')
                         print(RED + 'Oops! Try again!\n' + RESET)
-                    """
-                    If the user press the same letter which was
-                    Previously chosen
-                    And runs out of warning he has choice to play again
-                    """
                     elif guess in used_letters:
                         os.system('cls||clear')
                         warnings_remaining -= 1
@@ -248,18 +243,11 @@ def run_simulation():
                             print(RED + 'Good luck next time!' + RESET)
                             print('\n')
                             play_again()
-                    """
-                    If the user guesses the correct letter
-                    """
                     elif guess in set(gameword):
                         os.system('cls||clear')
                         print(YELLOW + 'You got it right!\n' + RESET)
                         used_letters.append(guess)
                         guesses_remaining -= 1
-                    """
-                    If the user guess is incorrect and runs out
-                    Of guesses remaining
-                    """
                     else:
                         used_letters.append(guess)
                         os.system('cls||clear')
@@ -276,9 +264,6 @@ def run_simulation():
                             try_to_match()
                             print('\n')
                             play_again()
-            """
-            If the user guesses the gameword
-            """
             else:
                 os.system('cls||clear')
                 print(CYAN + 'Congratulations!\n' + RESET)
