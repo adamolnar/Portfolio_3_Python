@@ -253,7 +253,7 @@ def run_simulation():
                         print(RED + 'You loose 1 guess.\n' + RESET)
                         guesses_remaining -= 1
                         incorrect_guess -= 1
-                        if guesses_remaining > 1:  # If runs out of 6 guesses
+                        if guesses_remaining < 1:  # If runs out of 6 guesses
                             os.system('cls||clear')
                             print(RED + 'Sorry,no guesses available.' + RESET)
                             print(show_word_underscore(gameword, used_letters))

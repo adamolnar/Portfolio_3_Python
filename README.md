@@ -163,7 +163,7 @@ incorrect_guess = 0
           print(RED + 'You loose 1 guess.\n' + RESET)
           guesses_remaining -= 1
           incorrect_guess -= 1
-          if guesses_remaining > 1:
+          if guesses_remaining < 1:
               os.system('cls||clear')
               print(RED + 'Sorry,no more guesses available.' + RESET)
               print(show_word_underscore(gameword, used_letters))
