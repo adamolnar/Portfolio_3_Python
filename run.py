@@ -199,7 +199,7 @@ def run_simulation():
         guessed = False
         guesses_remaining = 6
         warnings_remaining = 3
-        incorrect_guess = 0
+        incorrect_guess = 6
         print('The gameword is loading...')
         print('A gameword is', len(gameword), 'letters long.')
 
@@ -247,14 +247,6 @@ def run_simulation():
                         print(YELLOW + 'You got it right!\n' + RESET)
                         used_letters.append(guess)
                         guesses_remaining -= 1
-                    elif guesses_remaining == 0:
-                        os.system('cls||clear')
-                        print(RED + 'Sorry,no more guesses available.' + RESET)
-                        print(show_word_underscore(gameword, used_letters))
-                        print('\n')
-                        try_to_match()
-                        print('\n')
-                        play_again()
                     else:
                         used_letters.append(guess)
                         os.system('cls||clear')
@@ -263,6 +255,14 @@ def run_simulation():
                         print(RED + 'You loose 1 guess.\n' + RESET)
                         guesses_remaining -= 1
                         incorrect_guess -= 1
+                        if guesses_remaining == 0:
+                            os.system('cls||clear')
+                            print(RED + 'Sorry,no more guesses available.' + RESET)
+                            print(show_word_underscore(gameword, used_letters))
+                            print('\n')
+                            try_to_match()
+                            print('\n')
+                            play_again()
             else:
                 os.system('cls||clear')
                 print(CYAN + 'Congratulations!\n' + RESET)

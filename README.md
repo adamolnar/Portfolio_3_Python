@@ -12,6 +12,7 @@ Be warned, every time you guess a letter wrong you loose a life and the hangman 
 Solve the puzzle before the hangman dies.
 
 [Here is live version of my project.](https://hangman-game-portfolio3-04c41eba22eb.herokuapp.com/)
+
 ![Screenshot_am_i_resposive](/screenshots/Screenshot_am_i_resposive.png)
 
 ## How to play
@@ -136,7 +137,42 @@ I have manually tested this project by doing the following:
 
 incorrect_guess = 0
 
-- In function game(gameword) after testing guesses remaining were going to -1 although user has only 6 guesses available. It was because  incorrect_guess were assigned value of 6 so i fixed it by assigning value of 0.
+- In function game(gameword) after testing guesses remaining were going to -1 although user has only 6 guesses available. I had to change the order of this function which fixed the problem.
+
+
+      elif guesses_remaining == 0:
+        os.system('cls||clear')
+        print(RED + 'Sorry,no more guesses available.' + RESET)
+        print(show_word_underscore(gameword, used_letters))
+        print('\n')
+        try_to_match()
+        print('\n')
+        play_again()
+      else:
+        used_letters.append(guess)
+        os.system('cls||clear')
+        print(RED + "Sorry!" + RESET)
+        print(RED + f"{guess} is not in the word." + RESET)
+        print(RED + 'You loose 1 guess.\n' + RESET)
+        guesses_remaining -= 1
+        incorrect_guess -= 1
+
+      else:
+          used_letters.append(guess)
+          os.system('cls||clear')
+          print(RED + "Sorry!" + RESET)
+          print(RED + f"{guess} is not in the word." + RESET)
+          print(RED + 'You loose 1 guess.\n' + RESET)
+          guesses_remaining -= 1
+          incorrect_guess -= 1
+          if guesses_remaining == 0:
+              os.system('cls||clear')
+              print(RED + 'Sorry,no more guesses available.' + RESET)
+              print(show_word_underscore(gameword, used_letters))
+              print('\n')
+              try_to_match()
+              print('\n')
+              play_again()
 
 - After user runs out of guesses has a choice of either play again the game or exit. When I looped back to function play_again(), gameword was the same as the previous one. I had to wrap up whole game in function run_simulation() in order to generate each tile new word.
 
